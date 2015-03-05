@@ -4,9 +4,9 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: custom fields, widget, widgets, shortcode, meta, extra, data, post, posts, page, pages, coffee2code
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Requires at least: 2.8
-Tested up to: 3.8
-Stable tag: 3.5
+Requires at least: 3.6
+Tested up to: 4.1
+Stable tag: 3.6
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -30,7 +30,7 @@ There are six template tags provided by this plugin. Here they are, with an expl
 
 You can filter the custom field values that the plugin would display. Add filters for '`the_meta`' to filter custom field data (see the end of the code file for commented out samples you may wish to include). You can also add per-meta filters by hooking '`the_meta_$sanitized_field`'. `$sanitized_field` is a clean version of the value of `$field` where everything but alphanumeric and underscore characters have been removed. So to filter the value of the "Related Posts" custom field, you would need to add a filter for '`the_meta_RelatedPosts`'.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/get-custom-field-values/) | [Plugin Directory Page](http://wordpress.org/plugins/get-custom-field-values/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/get-custom-field-values/) | [Plugin Directory Page](https://wordpress.org/plugins/get-custom-field-values/) | [Author Homepage](http://coffee2code.com)
 
 
 == Screenshots ==
@@ -98,10 +98,12 @@ The plugin provides six optional template tags for use in your theme templates.
 * `<?php function c2c_get_custom( $field, $before='', $after='', $none='', $between='', $before_last='' ) ?>`
 Template tag for use inside "the loop" and applies to the currently listed post.
 
-* `<?php function c2c_get_current_custom( $field, $before='', $after='', $none='', $between='', $before_last='' ) ?>`                                                           
+* `<?php function c2c_get_current_custom( $field, $before='', $after='', $none='', $between='', $before_last='' ) ?>`
+
 Template tag for use on permalink (aka single) page templates for posts and pages.
 
-* `<?php function c2c_get_post_custom( $post_id, $field, $before='', $after='', $none='', $between='', $before_last='' ) ?>`                                                           
+* `<?php function c2c_get_post_custom( $post_id, $field, $before='', $after='', $none='', $between='', $before_last='' ) ?>`
+
 Template tag for use when you know the ID of the post you're interested in.
 
 * `<?php function c2c_get_random_custom( $field, $before='', $after='', $none='', $limit=1, $between='', $before_last='' ) ?>`
@@ -231,10 +233,26 @@ Examples:
 
 == Changelog ==
 
+= 3.6 (2015-03-04) =
+* Update widget framework to 009
+* Update widget to 008
+* Explicitly declare widget class methods public
+* Add more unit tests
+* Reformat plugin header
+* Minor code reformatting (spacing, bracing)
+* Change documentation links to wp.org to be https
+* Minor documentation improvements and spacing changes throughout
+* Note compatibility through WP 4.1+
+* Drop compatibility with version of WP older than 3.6
+* Update copyright date (2015)
+* Add plugin icon
+* Regenerate .pot
+
 = 3.5 (2014-01-17) =
 * Includes a significant number of changes from the unreleased v3.4
 * Hide shortcode wizard by default (won't change existing setting for users)
 * Show shortcode wizard for new posts as well
+* Add unit tests
 * Cast all intended integer arguments as absint() instead of intval()
 * Update widget version to 006
 * Update widget framework to 008
@@ -381,6 +399,9 @@ the specified custom field.
 
 
 == Upgrade Notice ==
+
+= 3.6 =
+Minor update: added more unit tests; updated widget framework to 009; noted compatibility is now WP 3.6-4.1+; added plugin icon
 
 = 3.5 =
 Recommended update: includes the unreleased changes in v3.4; added unit tests; noted compatibility through WP 3.8+

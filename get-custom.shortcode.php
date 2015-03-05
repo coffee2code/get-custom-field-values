@@ -1,8 +1,8 @@
 <?php
 /*
- * Get Custom Field Values plugin shortcode code
+ * Get Custom Field Values plugin shortcode code.
  *
- * Copyright (c) 2004-2014 by Scott Reilly (aka coffee2code)
+ * Copyright (c) 2004-2015 by Scott Reilly (aka coffee2code)
  *
  */
 
@@ -11,11 +11,11 @@ defined( 'ABSPATH' ) or die();
 if ( ! class_exists( 'c2c_GetCustomFieldValuesShortcode' ) && class_exists( 'c2c_GetCustomWidget' ) ) :
 
 class c2c_GetCustomFieldValuesShortcode {
-	var $name           = 'shortcode_get_custom_field_values';
-	var $shortcode      = 'custom_field';
-	var $title          = '';
-	var $widget_handler = '';
-	var $widget_base    = '';
+	public $name           = 'shortcode_get_custom_field_values';
+	public $shortcode      = 'custom_field';
+	public $title          = '';
+	public $widget_handler = '';
+	public $widget_base    = '';
 
 	/**
 	 * Constructor.
@@ -53,7 +53,6 @@ class c2c_GetCustomFieldValuesShortcode {
 	 * @param string  $post_type The post type
 	 * @param string  $type      The mode for the meta box (normal, advanced, or side)
 	 * @param WP_Post $post      The post
-	 * @return void
 	 */
 	public function do_meta_box( $post_type, $type, $post ) {
 		$post_types = apply_filters( 'c2c_get_custom_field_values_post_types', get_post_types() );
@@ -71,7 +70,6 @@ class c2c_GetCustomFieldValuesShortcode {
 	 *
 	 * @param array     $hidden List of all hidden metaboxes
 	 * @param WP_Screen $screen Screen object.
-	 * @return
 	 */
 	public function default_hidden_meta_boxes( $hidden, $screen ) {
 		if ( ! in_array( $this->name, $hidden ) ) {

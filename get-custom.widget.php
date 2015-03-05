@@ -1,14 +1,12 @@
 <?php
 /**
- * @package c2c_GetCustomWidget
- * @author Scott Reilly
- * @version 006
- */
-/*
  * Get Custom Field Values plugin widget code
  *
- * Copyright (c) 2004-2014 by Scott Reilly (aka coffee2code)
+ * Copyright (c) 2004-2015 by Scott Reilly (aka coffee2code)
  *
+ * @package c2c_GetCustomWidget
+ * @author  Scott Reilly
+ * @version 008
  */
 
 defined( 'ABSPATH' ) or die();
@@ -17,22 +15,20 @@ if ( ! class_exists( 'c2c_GetCustomWidget' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-widget.php' );
 
-class c2c_GetCustomWidget extends C2C_Widget_008 {
+class c2c_GetCustomWidget extends C2C_Widget_009 {
 
 	/**
 	 * Constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'get-custom', __FILE__, array( 'width' => 300 ) );
 		add_filter( $this->get_hook( 'excluded_form_options' ), array( $this, 'excluded_form_options' ) );
 	}
 
 	/**
 	 * Initializes the plugin's configuration and localizable text variables.
-	 *
-	 * @return void
 	 */
-	function load_config() {
+	public function load_config() {
 		$this->title       = __( 'Get Custom Field', $this->textdomain );
 		$this->description = __( 'A list of custom field value(s) from posts or pages.', $this->textdomain );
 
@@ -81,14 +77,14 @@ class c2c_GetCustomWidget extends C2C_Widget_008 {
 	}
 
 	/**
-	 * Outputs the body of the widget
+	 * Outputs the body of the widget.
 	 *
-	 * @param array $args Widget args
-	 * @param array $instance Widget instance
-	 * @param array $settings Widget settings
-	 * @return string The widget body content
+	 * @param array   $args Widget args.
+	 * @param array   $instance Widget instance.
+	 * @param array   $settings Widget settings.
+	 * @return string The widget body content.
 	 */
-	function widget_body( $args, $instance, $settings ) {
+	public function widget_body( $args, $instance, $settings ) {
 		extract( $args );
 		extract( $settings );
 
@@ -140,12 +136,12 @@ class c2c_GetCustomWidget extends C2C_Widget_008 {
 	}
 
 	/**
-	 * Validates widget instance values
+	 * Validates widget instance values.
 	 *
-	 * @param array $instance Array of widget instance values
-	 * @return array The filtered array of widget instance values
+	 * @param array  $instance Array of widget instance values.
+	 * @return array The filtered array of widget instance values.
 	 */
-	function validate( $instance ) {
+	public function validate( $instance ) {
 		$instance['field']   = trim( $instance['field'] );
 		$instance['limit']   = intval( trim( $instance['limit'] ) );
 		$instance['random']  = intval( trim( $instance['random'] ) );
@@ -153,16 +149,17 @@ class c2c_GetCustomWidget extends C2C_Widget_008 {
 		if ( '' != $instance['post_id'] ) {
 			$instance['post_id'] = intval( $instance['post_id'] );
 		}
+
 		return $instance;
 	}
 
 	/**
-	 * Defines widget form options that shouldn't be shown by default (since they are used for the shortcode widget)
+	 * Defines widget form options that shouldn't be shown by default (since they are used for the shortcode widget).
 	 *
-	 * @param array $excluded_form_options Array of form options that shouldn't be shown
-	 * @return array The array of form options that shouldn't be shown
+	 * @param array  $excluded_form_options Array of form options that shouldn't be shown.
+	 * @return array The array of form options that shouldn't be shown.
 	 */
-	function excluded_form_options( $excluded_form_options ) {
+	public function excluded_form_options( $excluded_form_options ) {
 		if ( $excluded_form_options === null ) {
 			$excluded_form_options = array( 'this_post' );
 		}

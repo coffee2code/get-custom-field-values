@@ -2,7 +2,7 @@
 
 class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 
-	/**
+	/*
 	 *
 	 * HELPER FUNCTIONS
 	 *
@@ -42,7 +42,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 
 
 
-	/**
+	/*
 	 *
 	 * TESTS
 	 *
@@ -89,7 +89,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$post_id = $this->create_post_with_meta();
 		$GLOBALS['post'] = $post_id;
 
-		$this->assertEquals( 'Mood: happy!',   c2c_get_custom( 'mood', 'Mood: ', '!', 'unknown', ', ' ) );
+		$this->assertEquals( 'Mood: happy!', c2c_get_custom( 'mood', 'Mood: ', '!', 'unknown', ', ' ) );
 		$this->assertEmpty( c2c_get_custom( 'nonexistent', 'Mood: ', '!', '', ', ' ) );
 	}
 
@@ -97,21 +97,21 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$post_id = $this->create_post_with_meta();
 		$GLOBALS['post'] = $post_id;
 
-		$this->assertEquals( 'Colors: blue, white.',   c2c_get_custom( 'color', 'Colors: ', '.', 'none', ', ' ) );
+		$this->assertEquals( 'Colors: blue, white.', c2c_get_custom( 'color', 'Colors: ', '.', 'none', ', ' ) );
 	}
 
 	function test_c2c_get_custom_with_between_for_multiple_values() {
 		$post_id = $this->create_post_with_meta();
 		$GLOBALS['post'] = $post_id;
 
-		$this->assertEquals( 'Children: adam, bob, cerise, diane.',   c2c_get_custom( 'child', 'Children: ', '.', 'none', ', ' ) );
+		$this->assertEquals( 'Children: adam, bob, cerise, diane.', c2c_get_custom( 'child', 'Children: ', '.', 'none', ', ' ) );
 	}
 
 	function test_c2c_get_custom_with_before_last_for_single_value() {
 		$post_id = $this->create_post_with_meta();
 		$GLOBALS['post'] = $post_id;
 
-		$this->assertEquals( 'Mood: happy!',   c2c_get_custom( 'mood', 'Mood: ', '!', 'unknown', ', ', ', and ' ) );
+		$this->assertEquals( 'Mood: happy!', c2c_get_custom( 'mood', 'Mood: ', '!', 'unknown', ', ', ', and ' ) );
 		$this->assertEmpty( c2c_get_custom( 'nonexistent', 'Mood: ', '!', '', ', ', ', and' ) );
 	}
 
@@ -119,17 +119,104 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$post_id = $this->create_post_with_meta();
 		$GLOBALS['post'] = $post_id;
 
-		$this->assertEquals( 'Colors: blue, and white.',   c2c_get_custom( 'color', 'Colors: ', '.', 'none', ', ', ', and ' ) );
+		$this->assertEquals( 'Colors: blue, and white.', c2c_get_custom( 'color', 'Colors: ', '.', 'none', ', ', ', and ' ) );
 	}
 
 	function test_c2c_get_custom_with_before_last_for_multiple_values() {
 		$post_id = $this->create_post_with_meta();
 		$GLOBALS['post'] = $post_id;
 
-		$this->assertEquals( 'Children: adam, bob, cerise, and diane.',   c2c_get_custom( 'child', 'Children: ', '.', 'none', ', ', ', and ' ) );
+		$this->assertEquals( 'Children: adam, bob, cerise, and diane.', c2c_get_custom( 'child', 'Children: ', '.', 'none', ', ', ', and ' ) );
 	}
 
 	/* c2c_get_current_custom( $field, $before='', $after='', $none='', $between='', $before_last='' ) */
+
+	function test_c2c_get_current_custom_with_field() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'happy',      c2c_get_current_custom( 'mood' ) );
+		$this->assertEquals( 'Denver, CO', c2c_get_current_custom( 'location' ) );
+		$this->assertEmpty( c2c_get_current_custom( 'nonexistent' ) );
+	}
+
+	function test_c2c_get_current_custom_with_before() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Mood: happy', c2c_get_current_custom( 'mood', 'Mood: ' ) );
+		$this->assertEmpty( c2c_get_current_custom( 'nonexistent', 'Mood: ' ) );
+	}
+
+	function test_c2c_get_current_custom_with_after() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Mood: happy!', c2c_get_current_custom(  'mood', 'Mood: ', '!' ) );
+		$this->assertEmpty( c2c_get_current_custom( 'nonexistent', 'Mood: ', '!' ) );
+	}
+
+	function test_c2c_get_current_custom_with_none() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Mood: happy!',   c2c_get_current_custom( 'mood', 'Mood: ', '!', 'unknown' ) );
+		$this->assertEquals( 'Mood: unknown!', c2c_get_current_custom( 'nonexistent', 'Mood: ', '!', 'unknown' ) );
+	}
+
+	function test_c2c_get_current_custom_with_between_for_single_value() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Mood: happy!', c2c_get_current_custom( 'mood', 'Mood: ', '!', 'unknown', ', ' ) );
+		$this->assertEmpty( c2c_get_current_custom( 'nonexistent', 'Mood: ', '!', '', ', ' ) );
+	}
+
+	function test_c2c_get_current_custom_with_between_for_two_values() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Colors: blue, white.', c2c_get_current_custom( 'color', 'Colors: ', '.', 'none', ', ' ) );
+	}
+
+	function test_c2c_get_current_custom_with_between_for_multiple_values() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Children: adam, bob, cerise, diane.', c2c_get_current_custom( 'child', 'Children: ', '.', 'none', ', ' ) );
+	}
+
+	function test_c2c_get_current_custom_with_before_last_for_single_value() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Mood: happy!', c2c_get_current_custom( 'mood', 'Mood: ', '!', 'unknown', ', ', ', and ' ) );
+		$this->assertEmpty( c2c_get_current_custom( 'nonexistent', 'Mood: ', '!', '', ', ', ', and' ) );
+	}
+
+	function test_c2c_get_current_custom_with_before_last_for_two_values() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Colors: blue, and white.', c2c_get_current_custom( 'color', 'Colors: ', '.', 'none', ', ', ', and ' ) );
+	}
+
+	function test_c2c_get_current_custom_with_before_last_for_multiple_values() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertEquals( 'Children: adam, bob, cerise, and diane.', c2c_get_current_custom( 'child', 'Children: ', '.', 'none', ', ', ', and ' ) );
+	}
 
 	/* c2c_get_post_custom( $post_id, $field, $before='', $after='', $none='', $between='', $before_last='' ) */
 
@@ -138,7 +225,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 
 		$this->assertEquals( 'happy',      c2c_get_post_custom( $post_id, 'mood' ) );
 		$this->assertEquals( 'Denver, CO', c2c_get_post_custom( $post_id, 'location' ) );
-		$this->assertEmpty( c2c_get_custom( $post_id, 'nonexistent' ) );
+		$this->assertEmpty( c2c_get_post_custom( $post_id, 'nonexistent' ) );
 	}
 
 	function test_c2c_get_post_custom_with_before() {
@@ -165,39 +252,39 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	function test_c2c_get_post_custom_with_between_for_single_value() {
 		$post_id = $this->create_post_with_meta();
 
-		$this->assertEquals( 'Mood: happy!',   c2c_get_post_custom( $post_id, 'mood', 'Mood: ', '!', 'unknown', ', ' ) );
+		$this->assertEquals( 'Mood: happy!', c2c_get_post_custom( $post_id, 'mood', 'Mood: ', '!', 'unknown', ', ' ) );
 		$this->assertEmpty( c2c_get_post_custom( $post_id, 'nonexistent', 'Mood: ', '!', '', ', ' ) );
 	}
 
 	function test_c2c_get_post_custom_with_between_for_two_values() {
 		$post_id = $this->create_post_with_meta();
 
-		$this->assertEquals( 'Colors: blue, white.',   c2c_get_post_custom( $post_id, 'color', 'Colors: ', '.', 'none', ', ' ) );
+		$this->assertEquals( 'Colors: blue, white.', c2c_get_post_custom( $post_id, 'color', 'Colors: ', '.', 'none', ', ' ) );
 	}
 
 	function test_c2c_get_post_custom_with_between_for_multiple_values() {
 		$post_id = $this->create_post_with_meta();
 
-		$this->assertEquals( 'Children: adam, bob, cerise, diane.',   c2c_get_post_custom( $post_id, 'child', 'Children: ', '.', 'none', ', ' ) );
+		$this->assertEquals( 'Children: adam, bob, cerise, diane.', c2c_get_post_custom( $post_id, 'child', 'Children: ', '.', 'none', ', ' ) );
 	}
 
 	function test_c2c_get_post_custom_with_before_last_for_single_value() {
 		$post_id = $this->create_post_with_meta();
 
-		$this->assertEquals( 'Mood: happy!',   c2c_get_post_custom( $post_id, 'mood', 'Mood: ', '!', 'unknown', ', ', ', and ' ) );
+		$this->assertEquals( 'Mood: happy!', c2c_get_post_custom( $post_id, 'mood', 'Mood: ', '!', 'unknown', ', ', ', and ' ) );
 		$this->assertEmpty( c2c_get_post_custom( $post_id, 'nonexistent', 'Mood: ', '!', '', ', ', ', and' ) );
 	}
 
 	function test_c2c_get_post_custom_with_before_last_for_two_values() {
 		$post_id = $this->create_post_with_meta();
 
-		$this->assertEquals( 'Colors: blue, and white.',   c2c_get_post_custom( $post_id, 'color', 'Colors: ', '.', 'none', ', ', ', and ' ) );
+		$this->assertEquals( 'Colors: blue, and white.', c2c_get_post_custom( $post_id, 'color', 'Colors: ', '.', 'none', ', ', ', and ' ) );
 	}
 
 	function test_c2c_get_post_custom_with_before_last_for_multiple_values() {
 		$post_id = $this->create_post_with_meta();
 
-		$this->assertEquals( 'Children: adam, bob, cerise, and diane.',   c2c_get_post_custom( $post_id, 'child', 'Children: ', '.', 'none', ', ', ', and ' ) );
+		$this->assertEquals( 'Children: adam, bob, cerise, and diane.', c2c_get_post_custom( $post_id, 'child', 'Children: ', '.', 'none', ', ', ', and ' ) );
 	}
 
 	/* c2c_get_random_custom( $field, $before='', $after='', $none='', $limit=1, $between=', ', $before_last='' ) */
@@ -304,7 +391,19 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$this->assertEquals( 'Colors: cyan and purple!', c2c_get_recent_custom( 'color', 'Colors: ', '!', 'none', ' and ', '', 2 ) );
 	}
 
-	/* [custom_field field="" post_id="" this_post="" random="" limit="" before="" after="" none="" between="" before_last="" id="" class=""] */
+	/*
+	 * Shortcode
+	 *
+	 * [custom_field field="" post_id="" this_post="" random="" limit="" before="" after="" none="" between="" before_last="" id="" class=""]
+	 */
+
+	function test_shortcode_class_exists() {
+		$this->assertTrue( class_exists( 'c2c_GetCustomFieldValuesShortcode' ) );
+	}
+
+	function test_shortcode_hooks_init() {
+		$this->assertEquals( 11, has_filter( 'init', 'register_c2c_GetCustomFieldValuesShortcode' ) );
+	}
 
 	function test_shortcode_with_field() {
 		$post_id = $this->create_post_with_meta();
@@ -314,6 +413,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 
 	function test_shortcode_with_field_and_id_and_class() {
 		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
 
 		$this->assertEquals( '<span id="the-id" class="the-class">happy</span>', do_shortcode( '[custom_field field="mood" id="the-id" class="the-class"]' ) );
 	}
@@ -328,6 +428,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	function test_shortcode_with_post_id() {
 		$post_id1 = $this->create_post_with_meta();
 		$post_id2 = $this->create_post_with_meta( array( 'mood' => 'tired' ) );
+		$GLOBALS['post'] = $post_id1;
 
 		$this->assertEquals( 'happy', do_shortcode( '[custom_field field="mood" post_id="' . $post_id1 . '"]' ) );
 		$this->assertEquals( 'tired', do_shortcode( '[custom_field field="mood" post_id="' . $post_id2 . '"]' ) );
@@ -341,6 +442,20 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 			'Kids: adam, bob, and cerise!',
 			do_shortcode( '[custom_field field="child" post_id="" limit="3" before="Kids: " after="!" between=", " before_last=", and "]' )
 		);
+	}
+
+	/* Widget */
+
+	function test_widget_class_exists() {
+		$this->assertTrue( class_exists( 'c2c_GetCustomWidget' ) );
+	}
+
+	function test_widget_framework_class_name() {
+		$this->assertTrue( class_exists( 'C2C_Widget_009' ) );
+	}
+
+	function test_widget_hooks_widgets_init() {
+		$this->assertEquals( 10, has_filter( 'widgets_init', 'register_c2c_GetCustomWidget' ) );
 	}
 
 }
