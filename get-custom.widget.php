@@ -6,7 +6,7 @@
  *
  * @package c2c_GetCustomWidget
  * @author  Scott Reilly
- * @version 008
+ * @version 009
  */
 
 defined( 'ABSPATH' ) or die();
@@ -15,7 +15,18 @@ if ( ! class_exists( 'c2c_GetCustomWidget' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-widget.php' );
 
-class c2c_GetCustomWidget extends C2C_Widget_009 {
+class c2c_GetCustomWidget extends C2C_Widget_010 {
+
+	/**
+	 * Returns version of the widget.
+	 *
+	 * @since 009
+	 *
+	 * @return string
+	 */
+	public static function version() {
+		return '009';
+	}
 
 	/**
 	 * Constructor

@@ -401,6 +401,10 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$this->assertTrue( class_exists( 'c2c_GetCustomFieldValuesShortcode' ) );
 	}
 
+	function test_shortcode_version() {
+		$this->assertEquals( '003', c2c_GetCustomFieldValuesShortcode::version() );
+	}
+
 	function test_shortcode_hooks_init() {
 		$this->assertEquals( 11, has_filter( 'init', 'register_c2c_GetCustomFieldValuesShortcode' ) );
 	}
@@ -450,8 +454,16 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$this->assertTrue( class_exists( 'c2c_GetCustomWidget' ) );
 	}
 
+	function test_widget_version() {
+		$this->assertEquals( '009', c2c_GetCustomWidget::version() );
+	}
+
 	function test_widget_framework_class_name() {
-		$this->assertTrue( class_exists( 'C2C_Widget_009' ) );
+		$this->assertTrue( class_exists( 'C2C_Widget_010' ) );
+	}
+
+	function test_widget_framework_version() {
+		$this->assertEquals( '010', C2C_Widget_010::version() );
 	}
 
 	function test_widget_hooks_widgets_init() {

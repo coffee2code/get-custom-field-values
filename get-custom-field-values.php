@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Get Custom Field Values
- * Version:     3.6
+ * Version:     3.6.1
  * Plugin URI:  http://coffee2code.com/wp-plugins/get-custom-field-values/
  * Author:      Scott Reilly
  * Author URI:  http://coffee2code.com/
@@ -10,7 +10,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Description: Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
  *
- * Compatible with WordPress 3.6+ through 4.1+.
+ * Compatible with WordPress 3.6+ through 4.3+.
  *
  * =>> Read the accompanying readme.txt file for instructions and documentation.
  * =>> Also, visit the plugin's homepage for additional information and updates.
@@ -18,7 +18,7 @@
  *
  * @package Get_Custom_Field_Values
  * @author  Scott Reilly
- * @version 3.6
+ * @version 3.6.1
  */
 
 /*
@@ -69,8 +69,8 @@
 
 defined( 'ABSPATH' ) or die();
 
-include( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'get-custom.widget.php' );
-include( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'get-custom.shortcode.php' );
+require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'get-custom.widget.php' );
+require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'get-custom.shortcode.php' );
 
 if ( ! function_exists( 'c2c_get_custom' ) ) :
 /**
