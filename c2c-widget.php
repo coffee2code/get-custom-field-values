@@ -2,24 +2,23 @@
 /**
  * C2C_Widget widget code.
  *
- * Copyright (c) 2010-2015 by Scott Reilly (aka coffee2code)
+ * Copyright (c) 2010-2016 by Scott Reilly (aka coffee2code)
  *
- * @package C2C_Widget
+ * @package c2c_GetCustomFieldValues_Widget_011
  * @author  Scott Reilly
- * @version 010
+ * @version 011
  */
 
 defined( 'ABSPATH' ) or die();
 
-if ( class_exists( 'WP_Widget' ) && ! class_exists( 'C2C_Widget_010' ) ) :
+if ( class_exists( 'WP_Widget' ) && ! class_exists( 'c2c_GetCustomFieldValues_Widget_011' ) ) :
 
-class C2C_Widget_010 extends WP_Widget {
+class c2c_GetCustomFieldValues_Widget_011 extends WP_Widget {
 
 	public $config         = array();
 
 	protected $widget_id   = '';
 	protected $widget_file = '';
-	protected $textdomain  = '';
 	protected $title       = '';
 	protected $description = '';
 	protected $hook_prefix = '';
@@ -33,7 +32,7 @@ class C2C_Widget_010 extends WP_Widget {
 	 * @return string
 	 */
 	public static function version() {
-		return '010';
+		return '011';
 	}
 
 
@@ -43,17 +42,14 @@ class C2C_Widget_010 extends WP_Widget {
 	 * @param string $widget_id   Unique identifier for plugin, lowercased and underscored.
 	 * @param string $widget_file The sub-class widget file (__FILE__).
 	 * @param array  $control_ops Array of options to control appearance of widget: width, height, id_base.
-	 * @param string $textdomain  Textdomain; leave as null to set it as same value as $widget_id.
 	 */
-	public function __construct( $widget_id, $widget_file, $control_ops = array(), $textdomain = null ) {
+	public function __construct( $widget_id, $widget_file, $control_ops = array() ) {
 		$this->widget_id   = $widget_id;
 		$this->widget_file = $widget_file;
-		if ( ! $textdomain ) {
-			$textdomain = $widget_id;
-		}
-		$this->textdomain = $textdomain;
 
-		$this->load_textdomain();
+		// Load textdomain.
+		load_plugin_textdomain( 'get-custom-field-values' );
+
 		$this->load_config();
 
 		// input can be 'checkbox', 'multiselect', 'select', 'short_text', 'text', 'textarea', 'hidden', or 'none'
@@ -234,14 +230,6 @@ class C2C_Widget_010 extends WP_Widget {
 	}
 
 	/**
-	 * Loads the localization textdomain for the widget.
-	 */
-	public function load_textdomain() {
-		$subdir = '/lang';
-		load_plugin_textdomain( $this->textdomain, false, basename( dirname( $this->widget_file ) ) . $subdir );
-	}
-
-	/**
 	 * Returns the full plugin-specific name for a hook.
 	 *
 	 * @param string  $hook The name of a hook, to be made plugin-specific.
@@ -259,8 +247,8 @@ class C2C_Widget_010 extends WP_Widget {
 	 * Two class variables containing localized strings should be set in this function, in addition to the config array.
 	 *
 	 * e.g.
-	 *   $this->title = __('My Plugin Widget', $this->textdomain);
-	 *   $this->description => __('Description of this widget.', $this->textdomain);
+	 *   $this->title = __( 'My Plugin Widget', 'get-custom-field-values' );
+	 *   $this->description => __( 'Description of this widget.', $this->textdomain );
 	 *   $this->config = array( ... );
 	 */
 	public function load_config() {
@@ -291,6 +279,6 @@ class C2C_Widget_010 extends WP_Widget {
 	public function validate( $instance ) {
 		return $instance;
 	}
-} // end class C2C_Widget
+} // end class
 
 endif; // end if !class_exists()

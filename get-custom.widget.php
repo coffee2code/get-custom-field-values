@@ -2,11 +2,11 @@
 /**
  * Get Custom Field Values plugin widget code
  *
- * Copyright (c) 2004-2015 by Scott Reilly (aka coffee2code)
+ * Copyright (c) 2004-2016 by Scott Reilly (aka coffee2code)
  *
  * @package c2c_GetCustomWidget
  * @author  Scott Reilly
- * @version 009
+ * @version 010
  */
 
 defined( 'ABSPATH' ) or die();
@@ -15,7 +15,7 @@ if ( ! class_exists( 'c2c_GetCustomWidget' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-widget.php' );
 
-class c2c_GetCustomWidget extends C2C_Widget_010 {
+class c2c_GetCustomWidget extends c2c_GetCustomFieldValues_Widget_011 {
 
 	/**
 	 * Returns version of the widget.
@@ -25,7 +25,7 @@ class c2c_GetCustomWidget extends C2C_Widget_010 {
 	 * @return string
 	 */
 	public static function version() {
-		return '009';
+		return '010';
 	}
 
 	/**
@@ -40,50 +40,89 @@ class c2c_GetCustomWidget extends C2C_Widget_010 {
 	 * Initializes the plugin's configuration and localizable text variables.
 	 */
 	public function load_config() {
-		$this->title       = __( 'Get Custom Field', $this->textdomain );
-		$this->description = __( 'A list of custom field value(s) from posts or pages.', $this->textdomain );
+		$this->title       = __( 'Get Custom Field', 'get-custom-field-values' );
+		$this->description = __( 'A list of custom field value(s) from posts or pages.', 'get-custom-field-values' );
 
 		$this->config = array(
 			// input can be 'checkbox', 'multiselect', 'select', 'short_text', 'text', 'textarea', 'hidden', or 'none'
 			// datatype can be 'array' or 'hash'
 			// can also specify input_attributes
-			'title' => array( 'input' => 'text', 'default' => __( 'Custom Field', $this->textdomain ),
-					'label' => __( 'Title', $this->textdomain ) ),
-			'field' => array( 'input' => 'text', 'default' => '',
-					'label' => __( 'Custom field key', $this->textdomain ),
-					'help'  => __( '<strong>*Required.</strong>  The name of the custom field key whose value you wish to have displayed.', $this->textdomain ) ),
-			'this_post' => array( 'input' => 'checkbox', 'default' => false,
-					'label' => __( 'This post?', $this->textdomain ),
-					'help'  => __( 'The post containing this shortcode. Takes precedence over \'Post ID\'', $this->textdomain ) ),
-			'post_id' => array( 'input' => 'short_text', 'default' => '',
-					'label' => __( 'Post ID', $this->textdomain ),
-					'help'  => __( 'ID of post whose custom field\'s value you want to display. Leave blank to search for the custom field in any post. Use <code>0</code> to indicate it should only work on the permalink page for a page/post.', $this->textdomain ) ),
-			'random' =>	array( 'input' => 'checkbox', 'default' => false,
-					'label' => __( 'Pick random value?', $this->textdomain ) ),
-			'limit' => array( 'input' => 'short_text', 'default' => 0,
-					'label' => __( 'Limit', $this->textdomain ),
-					'help'  => __( 'The number of custom field items to list. Only applies if Post ID is empty and "Pick random value?" is unchecked. Use 0 to indicate no limit.', $this->textdomain ) ),
-			'before' => array( 'input' => 'text', 'default' => '',
-					'label' => __( 'Before text', $this->textdomain ),
-					'help'  => __( 'Text to display before the custom field.', $this->textdomain ) ),
-			'after' => array( 'input' => 'text', 'default' => '',
-					'label' => __( 'After text', $this->textdomain ),
-					'help'  => __( 'Text to display after the custom field.', $this->textdomain ) ),
-			'none' => array( 'input' => 'text', 'default' => '',
-					'label' => __( 'None text', $this->textdomain ),
-					'help'  => __( 'Text to display if no matching custom field is found (or it has no value). Leave this blank if you don\'t want anything to display when no match is found.', $this->textdomain ) ),
-			'between' => array( 'input' => 'text', 'default' => ', ',
-					'label' => __( 'Between text', $this->textdomain ),
-					'help'  => __( 'Text to display between custom field items if more than one are being shown.', $this->textdomain ) ),
-			'before_last' => array( 'input' => 'text', 'default' => '',
-					'label' => __( 'Before last text', $this->textdomain ),
-					'help'  => __( 'Text to display between the second to last and last custom field items if more than one are being shown.', $this->textdomain ) ),
-			'id' => array( 'input' => 'text', 'default' => '',
-					'label' => __( 'HTML id', $this->textdomain ),
-					'help'  => __( 'The \'id\' attribute for the &lt;span&gt; tag to surrounds output.', $this->textdomain ) ),
-			'class' => array( 'input' => 'text', 'default' => '',
-					'label' => __( 'HTML class', $this->textdomain ),
-					'help'  => __( 'The \'class\' attribute for the &lt;span&gt; tag to surrounds output.', $this->textdomain ) ),
+			'title' => array(
+				'input'   => 'text',
+				'default' => __( 'Custom Field', 'get-custom-field-values' ),
+				'label'   => __( 'Title', 'get-custom-field-values' ),
+			),
+			'field' => array(
+				'input'   => 'text',
+				'default' => '',
+				'label'   => __( 'Custom field key', 'get-custom-field-values' ),
+				'help'    => __( '<strong>*Required.</strong>  The name of the custom field key whose value you wish to have displayed.', 'get-custom-field-values' ),
+			),
+			'this_post' => array(
+				'input'   => 'checkbox',
+				'default' => false,
+				'label'   => __( 'This post?', 'get-custom-field-values' ),
+				'help'    => __( 'The post containing this shortcode. Takes precedence over \'Post ID\'', 'get-custom-field-values' ),
+			),
+			'post_id' => array(
+				'input'   => 'short_text',
+				'default' => '',
+				'label'   => __( 'Post ID', 'get-custom-field-values' ),
+				'help'    => __( 'ID of post whose custom field\'s value you want to display. Leave blank to search for the custom field in any post. Use <code>0</code> to indicate it should only work on the permalink page for a page/post.', 'get-custom-field-values' ),
+			),
+			'random' =>	array(
+				'input'   => 'checkbox',
+				'default' => false,
+				'label'   => __( 'Pick random value?', 'get-custom-field-values' ),
+			),
+			'limit' => array(
+				'input'   => 'short_text',
+				'default' => 0,
+				'label'   => __( 'Limit', 'get-custom-field-values' ),
+				'help'    => __( 'The number of custom field items to list. Only applies if Post ID is empty and "Pick random value?" is unchecked. Use 0 to indicate no limit.', 'get-custom-field-values' ),
+			),
+			'before' => array(
+				'input'   => 'text',
+				'default' => '',
+				'label'   => __( 'Before text', 'get-custom-field-values' ),
+				'help'    => __( 'Text to display before the custom field.', 'get-custom-field-values' ),
+			),
+			'after' => array(
+				'input'   => 'text',
+				'default' => '',
+				'label'   => __( 'After text', 'get-custom-field-values' ),
+				'help'    => __( 'Text to display after the custom field.', 'get-custom-field-values' ),
+			),
+			'none' => array(
+				'input'   => 'text',
+				'default' => '',
+				'label'   => __( 'None text', 'get-custom-field-values' ),
+				'help'    => __( 'Text to display if no matching custom field is found (or it has no value). Leave this blank if you don\'t want anything to display when no match is found.', 'get-custom-field-values' ),
+			),
+			'between' => array(
+				'input'   => 'text',
+				'default' => ', ',
+				'label'   => __( 'Between text', 'get-custom-field-values' ),
+				'help'    => __( 'Text to display between custom field items if more than one are being shown.', 'get-custom-field-values' ),
+			),
+			'before_last' => array(
+				'input'   => 'text',
+				'default' => '',
+				'label'   => __( 'Before last text', 'get-custom-field-values' ),
+				'help'    => __( 'Text to display between the second to last and last custom field items if more than one are being shown.', 'get-custom-field-values' ),
+			),
+			'id' => array(
+				'input'   => 'text',
+				'default' => '',
+				'label'   => __( 'HTML id', 'get-custom-field-values' ),
+				'help'    => __( 'The \'id\' attribute for the &lt;span&gt; tag to surrounds output.', 'get-custom-field-values' ),
+			),
+			'class' => array(
+				'input'   => 'text',
+				'default' => '',
+				'label'   => __( 'HTML class', 'get-custom-field-values' ),
+				'help'    => __( 'The \'class\' attribute for the &lt;span&gt; tag to surrounds output.', 'get-custom-field-values' ),
+			),
 		);
 	}
 
