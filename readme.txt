@@ -236,6 +236,7 @@ Examples:
 = 3.8 () =
 * Bugfix: Properly handle serialized meta values.
 * Change: Note compatibility through WP 4.7+.
+* Change: Update copyright date (2017).
 
 = 3.7 (2016-01-31) =
 * Change: Update widget framework to 011:
