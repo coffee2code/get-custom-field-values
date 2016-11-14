@@ -315,10 +315,14 @@ function c2c__format_custom( $field, $meta_values, $before='', $after='', $none=
 	}
 
 	if ( ! empty( $meta_values ) ) {
-		foreach ( $meta_values as $meta ) {
+		foreach ( $meta_values as $metas ) {
 			$sanitized_field = preg_replace( '/[^a-z0-9_]/i', '', $field );
-			$meta     = apply_filters( "the_meta_$sanitized_field", $meta );
-			$values[] = apply_filters( 'the_meta', $meta );
+			$metas = maybe_unserialize( $metas );
+
+			foreach ( (array) $metas as $meta ) {
+				$meta     = apply_filters( "the_meta_$sanitized_field", $meta );
+				$values[] = apply_filters( 'the_meta', $meta );
+			}
 		}
 	}
 

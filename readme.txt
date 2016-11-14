@@ -233,6 +233,9 @@ Examples:
 
 == Changelog ==
 
+= 3.8 () =
+* Bugfix: Properly handle serialized meta values.
+
 = 3.7 (2016-01-31) =
 * Change: Update widget framework to 011:
     * Change class name to c2c_GetCustomFieldValues_Widget_011 to be plugin-specific.

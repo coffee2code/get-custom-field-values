@@ -14,7 +14,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	private function create_post_with_meta( $metas = array(), $post_data = array() ) {
 		$post_id = $this->factory->post->create( $post_data );
 
-		if ( empty( $metas ) ) {
+		if ( ! $metas ) {
 			$metas = $this->get_sample_metas();
 		}
 
@@ -58,6 +58,32 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$this->assertEquals( 'happy',      c2c_get_custom( 'mood' ) );
 		$this->assertEquals( 'Denver, CO', c2c_get_custom( 'location' ) );
 		$this->assertEmpty( c2c_get_custom( 'nonexistent' ) );
+	}
+
+	public function test_c2c_get_custom_with_serialized_field() {
+		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
+
+		$values = array( 'Value1', 'Value2' );
+		add_post_meta( $post_id, 'serialized', $values );
+
+		$this->assertEquals( implode( ', ', $values ), c2c_get_custom( 'serialized', '', '', '', ', ' ) );
+	}
+
+	public function test_c2c_get_custom_with_multple_serialized_fields() {
+		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
+
+		$values1 = array( 'Value1', 'Value2' );
+		add_post_meta( $post_id, 'serialized', $values1 );
+		$values2 = array( 'Value3', 'Value4' );
+		add_post_meta( $post_id, 'serialized', $values2 );
+		add_post_meta( $post_id, 'serialized', 'Value5' );
+
+		$this->assertEquals(
+			implode( ', ', array_merge( $values1, $values2, array( 'Value5' ) ) ),
+			c2c_get_custom( 'serialized', '', '', '', ', ' )
+		);
 	}
 
 	public function test_c2c_get_custom_with_before() {
