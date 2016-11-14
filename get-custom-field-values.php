@@ -10,7 +10,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Description: Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
  *
- * Compatible with WordPress 3.6+ through 4.4+.
+ * Compatible with WordPress 3.6+ through 4.7+.
  *
  * =>> Read the accompanying readme.txt file for instructions and documentation.
  * =>> Also, visit the plugin's homepage for additional information and updates.

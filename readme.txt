@@ -5,7 +5,7 @@ Tags: custom fields, widget, widgets, shortcode, meta, extra, data, post, posts,
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
-Tested up to: 4.4
+Tested up to: 4.7
 Stable tag: 3.7
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
@@ -235,6 +235,7 @@ Examples:
 
 = 3.8 () =
 * Bugfix: Properly handle serialized meta values.
+* Change: Note compatibility through WP 4.7+.
 
 = 3.7 (2016-01-31) =
 * Change: Update widget framework to 011:
