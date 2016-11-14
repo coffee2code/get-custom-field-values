@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 4.7
-Stable tag: 3.7
+Stable tag: 3.8
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -435,6 +435,9 @@ the specified custom field.
 
 
 == Upgrade Notice ==
+
+= 3.8 =
+Minor bugfix update: Properly handled serialized meta values; verified compatibility through WP 4.7+.
 
 = 3.7 =
 Minor update: improved support for localization, minor unit test tweaks, verified compatibility through WP 4.4+, and updated copyright date (2016)
