@@ -233,7 +233,7 @@ Examples:
 
 == Changelog ==
 
-= 3.8 () =
+= 3.8 (2016-11-13) =
 * Bugfix: Properly handle serialized meta values.
 * Change: Note compatibility through WP 4.7+.
 * Change: Update copyright date (2017).
