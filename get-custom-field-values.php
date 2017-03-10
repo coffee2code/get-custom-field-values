@@ -273,7 +273,7 @@ function c2c_get_recent_custom( $field, $before='', $after='', $none='', $betwee
 	}
 
 	$sql .= "AND postmeta.meta_value != '' ";
-	$sql .= "ORDER BY posts.post_date $order";
+	$sql .= "ORDER BY posts.post_date $order"; // Value is restricted to 2 valid values above
 
 	if ( $limit > 0 ) {
 		$sql .= ' LIMIT %d';
