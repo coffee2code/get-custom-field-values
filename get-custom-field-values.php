@@ -354,7 +354,7 @@ function c2c__format_custom( $field, $meta_values, $before='', $after='', $none=
 		$value = $none;
 	}
 
-	return $before . $value . $after;
+	return c2c__gcfv_do_substitutions( $before, $field, $value ) . $value . c2c__gcfv_do_substitutions( $after, $field, $value );
 }
 endif;
 

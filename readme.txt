@@ -235,6 +235,7 @@ Examples:
 
 = 3.8 (2016-11-13) =
 * New: Add support for percent-substitution tags
+    * Tags can be used in before and/or after text and will be replaced on display with the custom field text
     * Add '%field%' to display custom field name
     * Add '%value%' to display custom field value
     * Add `c2c__gcfv_do_substitutions()` to handle the substitutions

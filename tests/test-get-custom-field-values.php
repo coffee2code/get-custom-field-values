@@ -506,6 +506,20 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		);
 	}
 
+	public function test_shortcode_with_percent_substitutions() {
+		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
+
+		$this->assertEquals(
+			'<li><strong>Website:</strong><a href="http://example.com" target="_blank">example.com</a>',
+			do_shortcode( '[custom_field field="Website" this_post="1" limit="0" before=\'<li><strong>Website:</strong><a href="http://%value%" target="_blank">\' after="</a>" between=", " /]' )
+		);
+		$this->assertEquals(
+			'<li><strong>Posted in:</strong> Denver, CO (location)',
+			do_shortcode( '[custom_field field="location" this_post="1" limit="0" before="<li><strong>Posted in:</strong> " after=" (%field%)" /]' )
+		);
+	}
+
 	/* Widget */
 
 	public function test_widget_class_exists() {
