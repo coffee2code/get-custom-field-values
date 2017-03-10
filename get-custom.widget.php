@@ -6,7 +6,7 @@
  *
  * @package c2c_GetCustomWidget
  * @author  Scott Reilly
- * @version 010
+ * @version 011
  */
 
 defined( 'ABSPATH' ) or die();
@@ -25,7 +25,16 @@ class c2c_GetCustomWidget extends c2c_GetCustomFieldValues_Widget_011 {
 	 * @return string
 	 */
 	public static function version() {
-		return '010';
+		return '011';
+	}
+
+	/**
+	 * Registers the widget.
+	 *
+	 * @since 011
+	 */
+	public static function register_widget() {
+		register_widget( __CLASS__ );
 	}
 
 	/**
@@ -218,9 +227,6 @@ class c2c_GetCustomWidget extends c2c_GetCustomFieldValues_Widget_011 {
 	}
 } // end class
 
-function register_c2c_GetCustomWidget() {
-	register_widget( 'c2c_GetCustomWidget' );
-}
-add_action( 'widgets_init', 'register_c2c_GetCustomWidget' );
+add_action( 'widgets_init', array( 'c2c_GetCustomWidget', 'register_widget' ) );
 
 endif;
