@@ -35,7 +35,7 @@ class c2c_GetCustomFieldValuesShortcode {
 	 * Constructor.
 	 */
 	public function __construct( $widget_handler ) {
-		$this->title          = __( 'Get Custom Field Values - Shortcode' );
+		$this->title          = __( 'Get Custom Field Values - Shortcode', 'get-custom-field-values' );
 		$this->widget_handler = $widget_handler;
 		$this->widget_base    = 'widget-' . $this->widget_handler->id_base;
 		$this->shortcode      = apply_filters( 'c2c_get_custom_field_values_shortcode', $this->shortcode );

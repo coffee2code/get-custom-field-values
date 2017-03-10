@@ -235,6 +235,7 @@ Examples:
 
 = 3.8 (2016-11-13) =
 * Fix: Properly handle serialized meta values
+* Fix: Add missing textdomain for string in shortcode widget
 * Change: Update widget to 011:
     * Add `register_widget()` and change to calling it when hooking 'admin_init'
     * Load textdomain
