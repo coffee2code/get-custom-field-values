@@ -427,7 +427,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	}
 
 	public function test_shortcode_version() {
-		$this->assertEquals( '003', c2c_GetCustomFieldValuesShortcode::version() );
+		$this->assertEquals( '004', c2c_GetCustomFieldValuesShortcode::version() );
 	}
 
 	public function test_shortcode_hooks_init() {
