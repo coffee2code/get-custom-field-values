@@ -42,7 +42,18 @@ class c2c_GetCustomWidget extends c2c_GetCustomFieldValues_Widget_011 {
 	 */
 	public function __construct() {
 		parent::__construct( 'get-custom', __FILE__, array( 'width' => 300 ) );
+
+		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		add_filter( $this->get_hook( 'excluded_form_options' ), array( $this, 'excluded_form_options' ) );
+	}
+
+	/**
+	 * Loads the plugin textdomain.
+	 *
+	 * @since 0111
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain( 'get-custom-field-values' );
 	}
 
 	/**

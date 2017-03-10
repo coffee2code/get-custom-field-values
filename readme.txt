@@ -237,6 +237,7 @@ Examples:
 * Fix: Properly handle serialized meta values
 * Change: Update widget to 011:
     * Add `register_widget()` and change to calling it when hooking 'admin_init'
+    * Load textdomain
 * Change: Update unit test bootstrap
     * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
     * Enable more error output for unit tests
