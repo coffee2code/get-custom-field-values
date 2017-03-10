@@ -234,12 +234,12 @@ Examples:
 == Changelog ==
 
 = 3.8 (2016-11-13) =
-* Bugfix: Properly handle serialized meta values.
+* Fix: Properly handle serialized meta values
 * Change: Update unit test bootstrap
     * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
     * Enable more error output for unit tests
-* Change: Note compatibility through WP 4.7+.
-* Change: Update copyright date (2017).
+* Change: Note compatibility through WP 4.7+
+* Change: Update copyright date (2017)
 
 = 3.7 (2016-01-31) =
 * Change: Update widget framework to 011:
