@@ -240,6 +240,7 @@ Examples:
     * Enable more error output for unit tests
 * Change: Note compatibility through WP 4.7+
 * Change: Update copyright date (2017)
+* New: Add LICENSE file
 
 = 3.7 (2016-01-31) =
 * Change: Update widget framework to 011:
