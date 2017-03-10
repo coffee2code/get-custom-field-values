@@ -235,6 +235,8 @@ Examples:
 
 = 3.8 (2016-11-13) =
 * Bugfix: Properly handle serialized meta values.
+* Change: Update unit test bootstrap
+    * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
 * Change: Note compatibility through WP 4.7+.
 * Change: Update copyright date (2017).
 
