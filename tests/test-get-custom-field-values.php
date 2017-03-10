@@ -38,6 +38,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 			'color' => array( 'blue', 'white' ),
 			'tshirt size' => 'M',
 			'location' => 'Denver, CO',
+			'Website' => 'example.com',
 		);
 	}
 
@@ -414,6 +415,18 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$post_id3 = $this->create_post_with_meta( array( 'color' => 'cyan' ),   array( 'post_title' => 'C', 'post_date' => '2013-04-01 12:00:00' ) );
 
 		$this->assertEquals( 'Colors: cyan and purple!', c2c_get_recent_custom( 'color', 'Colors: ', '!', 'none', ' and ', '', 2 ) );
+	}
+
+	/*
+	 * c2c__gcfv_do_substitutions()
+	 */
+
+	public function test_c2c__gcfv_do_substitutions() {
+		$this->assertEquals( 'cat and dog', c2c__gcfv_do_substitutions( 'cat and dog', 'example', 'zissou' ) );
+		$this->assertEquals( 'cat and zissou', c2c__gcfv_do_substitutions( 'cat and %value%', 'example', 'zissou' ) );
+		$this->assertEquals( 'cat and example', c2c__gcfv_do_substitutions( 'cat and %field%', 'example', 'zissou' ) );
+		$this->assertEquals( 'example: zissou', c2c__gcfv_do_substitutions( '%field%: %value%', 'example', 'zissou' ) );
+		$this->assertEquals( 'example: zissou%zissou="example"', c2c__gcfv_do_substitutions( '%field%: %value%%%value%="%field%"', 'example', 'zissou' ) );
 	}
 
 	/*

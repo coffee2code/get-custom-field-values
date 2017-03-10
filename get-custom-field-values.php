@@ -360,6 +360,39 @@ endif;
 
 add_filter( 'the_meta', 'do_shortcode' );
 
+
+/**
+ * Performs substitutions of percent-substitution tags within text.
+ *
+ * Recognized substitution tags:
+ * - %field% : The custom field name.
+ * - %value% : The value of the custom field for a post.
+ *
+ * @since 3.8
+ * @access private
+ *
+ * @param string $text  The text to search for substitutions.
+ * @param string $field The custom field name.
+ * @param string $value The value for the custom field.
+ * @return string
+ */
+function c2c__gcfv_do_substitutions( $text, $field, $value ) {
+	if ( false === strpos( $text, '%' ) ) {
+		return $text;
+	}
+
+	$replacements = array(
+		'%field%' => $field,
+		'%value%' => $value,
+	);
+
+	foreach ( $replacements as $key => $value ) {
+		$text = str_replace( $key, $value, $text );
+	}
+
+	return $text;
+}
+
 // Some filters you may wish to perform: (these are filters typically done to 'the_content' (post content))
 //add_filter('the_meta', 'convert_chars');
 //add_filter('the_meta', 'wptexturize');

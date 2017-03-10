@@ -234,6 +234,10 @@ Examples:
 == Changelog ==
 
 = 3.8 (2016-11-13) =
+* New: Add support for percent-substitution tags
+    * Add '%field%' to display custom field name
+    * Add '%value%' to display custom field value
+    * Add `c2c__gcfv_do_substitutions()` to handle the substitutions
 * Fix: Properly handle serialized meta values
 * Fix: Add missing textdomain for string in shortcode widget
 * Change: Update widget to 011:
