@@ -473,6 +473,26 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		);
 	}
 
+	public function test_shortcode_with_double_quotes_in_attribute() {
+		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
+
+		$this->assertEquals(
+			'<strong class="url">example.com</strong>',
+			do_shortcode( '[custom_field field="Website" this_post="1" limit="0" before=\'<strong class="url">\' after="</strong>" between=", " /]' )
+		);
+	}
+
+	public function test_shortcode_with_single_quotes_in_attribute() {
+		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
+
+		$this->assertEquals(
+			"<strong class='url'>example.com</strong>",
+			do_shortcode( '[custom_field field="Website" this_post="1" limit="0" before="<strong class=\'url\'>" after="</strong>" between=", " /]' )
+		);
+	}
+
 	/* Widget */
 
 	public function test_widget_class_exists() {
