@@ -480,7 +480,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	}
 
 	public function test_widget_version() {
-		$this->assertEquals( '010', c2c_GetCustomWidget::version() );
+		$this->assertEquals( '011', c2c_GetCustomWidget::version() );
 	}
 
 	public function test_widget_base_class_name() {
@@ -492,7 +492,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	}
 
 	public function test_widget_hooks_widgets_init() {
-		$this->assertEquals( 10, has_filter( 'widgets_init', 'register_c2c_GetCustomWidget' ) );
+		$this->assertEquals( 10, has_filter( 'widgets_init', array( 'c2c_GetCustomWidget', 'register_widget' ) ) );
 	}
 
 	public function test_widget_made_available() {
