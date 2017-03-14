@@ -315,8 +315,9 @@ function c2c__format_custom( $field, $meta_values, $before='', $after='', $none=
 	}
 
 	if ( ! empty( $meta_values ) ) {
+		$sanitized_field = sanitize_key( $field );
+
 		foreach ( $meta_values as $metas ) {
-			$sanitized_field = preg_replace( '/[^a-z0-9_]/i', '', $field );
 			$metas = maybe_unserialize( $metas );
 
 			foreach ( (array) $metas as $meta ) {

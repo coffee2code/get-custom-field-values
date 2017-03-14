@@ -240,6 +240,7 @@ Examples:
     * Add '%value%' to display custom field value
     * Add `c2c__gcfv_do_substitutions()` to handle the substitutions
 * Fix: Properly handle serialized meta values
+* Fix: Properly sanitize field name prior so use as part of a hook name
 * Fix: Add missing textdomain for string in shortcode widget
 * Change: Update widget to 011:
     * Add `register_widget()` and change to calling it when hooking 'admin_init'
