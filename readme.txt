@@ -259,6 +259,7 @@ Examples:
     * Minor code reformatting (spacing, bracing, Yoda-ify conditions)
 * Change: Update shortcode builder widget to 004:
     * Use `get_config()` to get widget config now that the object variable is protected
+    * Add `register()` and change to calling it when hooking 'init'
 * Change: Update unit test bootstrap
     * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
     * Enable more error output for unit tests
