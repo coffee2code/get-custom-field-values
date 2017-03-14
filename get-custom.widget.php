@@ -15,7 +15,7 @@ if ( ! class_exists( 'c2c_GetCustomWidget' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-widget.php' );
 
-class c2c_GetCustomWidget extends c2c_GetCustomFieldValues_Widget_011 {
+class c2c_GetCustomWidget extends c2c_Widget_013 {
 
 	/**
 	 * Returns version of the widget.

@@ -103,13 +103,13 @@ class c2c_GetCustomFieldValuesShortcode {
 	public function shortcode( $atts, $content = null ) {
 		$defaults = array();
 
-		foreach ( $this->widget_handler->config as $opt => $values ) {
+		foreach ( $this->widget_handler->get_config() as $opt => $values ) {
 			$defaults[ $opt ] = isset( $values['default'] ) ? $values['default'] : '';
 		}
 
 		$atts2 = shortcode_atts( $defaults, $atts );
 
-		foreach ( array_keys( $this->widget_handler->config ) as $key ) {
+		foreach ( array_keys( $this->widget_handler->get_config() ) as $key ) {
 			$$key = $atts2[ $key ];
 		}
 

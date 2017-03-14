@@ -245,6 +245,20 @@ Examples:
 * Change: Update widget to 011:
     * Add `register_widget()` and change to calling it when hooking 'admin_init'
     * Load textdomain
+* Change: Update widget framework:
+    * 013:
+    * Add `get_config()` as a getter for config array
+    * 012:
+    * Go back to non-plugin-specific class name of c2c_Widget_012
+    * Don't load textdomain
+    * Declare class and `load_config()` and `widget_body()` as being abstract
+    * Change class variable `$config` from public to protected
+    * Discontinue use of `extract()`
+    * Apply 'widget_title' filter to widget title
+    * Add more inline documentation
+    * Minor code reformatting (spacing, bracing, Yoda-ify conditions)
+* Change: Update shortcode builder widget to 004:
+    * Use `get_config()` to get widget config now that the object variable is protected
 * Change: Update unit test bootstrap
     * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
     * Enable more error output for unit tests
