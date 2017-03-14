@@ -244,7 +244,7 @@ function c2c_get_recent_custom( $field, $before='', $after='', $none='', $betwee
 
 	$limit = absint( $limit );
 
-	if ( empty( $between ) ) {
+	if ( ! $between ) {
 		$limit = 1;
 	}
 
@@ -282,7 +282,7 @@ function c2c_get_recent_custom( $field, $before='', $after='', $none='', $betwee
 	$values  = array();
 	$results = $wpdb->get_results( $wpdb->prepare( $sql, $field, $limit ) );
 
-	if ( ! empty( $results ) ) {
+	if ( $results ) {
 		foreach ( $results as $result ) { $values[] = $result->meta_value; };
 	}
 
@@ -310,11 +310,11 @@ if ( ! function_exists( 'c2c__format_custom' ) ) :
 function c2c__format_custom( $field, $meta_values, $before='', $after='', $none='', $between='', $before_last='' ) {
 	$values = array();
 
-	if ( empty( $between ) ) {
+	if ( ! $between ) {
 		$meta_values = array_slice( $meta_values, 0, 1 );
 	}
 
-	if ( ! empty( $meta_values ) ) {
+	if ( $meta_values ) {
 		$sanitized_field = sanitize_key( $field );
 
 		foreach ( $meta_values as $metas ) {
@@ -327,12 +327,12 @@ function c2c__format_custom( $field, $meta_values, $before='', $after='', $none=
 		}
 	}
 
-	if ( empty( $values ) ) {
+	if ( ! $values ) {
 		$value = '';
 	} else {
 		$values = array_map( 'trim', $values );
 
-		if ( empty( $before_last ) ) {
+		if ( ! $before_last ) {
 			$value = implode( $between, $values );
 		} else {
 			switch ( $size = sizeof( $values ) ) {
@@ -348,8 +348,8 @@ function c2c__format_custom( $field, $meta_values, $before='', $after='', $none=
 		}
 	}
 
-	if ( empty( $value ) ) {
-		if ( empty( $none ) ) {
+	if ( ! $value ) {
+		if ( ! $none ) {
 			return;
 		}
 		$value = $none;

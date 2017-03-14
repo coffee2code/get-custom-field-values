@@ -159,7 +159,7 @@ class c2c_GetCustomWidget extends c2c_GetCustomFieldValues_Widget_011 {
 		extract( $settings );
 
 		// Bail early if no field was specified
-		if ( empty( $field ) ) {
+		if ( ! $field ) {
 			return;
 		}
 
@@ -170,7 +170,7 @@ class c2c_GetCustomWidget extends c2c_GetCustomFieldValues_Widget_011 {
 		$body = '';
 
 		// Determine, based on inputs given, which template tag to use.
-		if ( ! empty( $post_id ) ) {
+		if ( $post_id ) {
 			if ( 'current' == $post_id ) {
 				$body = c2c_get_current_custom( $field, $before, $after, $none, $between, $before_last );
 			} elseif ( $random ) {
@@ -187,14 +187,14 @@ class c2c_GetCustomWidget extends c2c_GetCustomFieldValues_Widget_011 {
 		}
 
 		// If either 'id' or 'class' attribute was defined, then wrap output in span
-		if ( ! empty( $body ) && ! ( empty( $id ) && empty( $class ) ) ) {
+		if ( $body && ( $id || $class ) ) {
 			$tag = '<span';
 
-			if ( ! empty( $id ) ) {
+			if ( $id ) {
 				$tag .= ' id="' . esc_attr( $id ) . '"';
 			}
 
-			if ( ! empty( $class ) ) {
+			if ( $class ) {
 				$tag .= ' class="' . esc_attr( $class ) . '"';
 			}
 

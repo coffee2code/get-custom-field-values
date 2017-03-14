@@ -249,6 +249,7 @@ Examples:
     * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
     * Enable more error output for unit tests
 * Change: Use officially documented order of arguments for `implode()`
+* Change: Rephrase conditions to omit unnecessary use of `empty()`
 * Change: Note compatibility through WP 4.7+
 * Change: Update copyright date (2017)
 * New: Add LICENSE file

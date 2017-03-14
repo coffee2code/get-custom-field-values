@@ -134,12 +134,12 @@ class c2c_GetCustomFieldValuesShortcode {
 		}
 
 		// If either 'id' or 'class' attribute was defined, then wrap output in span
-		if ( ! empty( $ret ) && ! ( empty( $id ) && empty( $class ) ) ) {
+		if ( $ret && ( $id || $class ) ) {
 			$tag = '<span';
-			if ( ! empty( $id ) ) {
+			if ( $id ) {
 				$tag .= ' id="' . esc_attr( $id ) . '"';
 			}
-			if ( ! empty( $class ) ) {
+			if ( $class ) {
 				$tag .= ' class="' . esc_attr( $class ) . '"';
 			}
 			$tag .= ">$ret</span>";
