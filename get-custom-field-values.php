@@ -333,7 +333,7 @@ function c2c__format_custom( $field, $meta_values, $before='', $after='', $none=
 		$values = array_map( 'trim', $values );
 
 		if ( empty( $before_last ) ) {
-			$value = implode( $values, $between );
+			$value = implode( $between, $values );
 		} else {
 			switch ( $size = sizeof( $values ) ) {
 				case 1:
@@ -343,7 +343,7 @@ function c2c__format_custom( $field, $meta_values, $before='', $after='', $none=
 					$value = $values[0] . $before_last . $values[1];
 					break;
 				default:
-					$value = implode( array_slice( $values, 0, $size-1 ), $between ) . $before_last . $values[ $size-1 ];
+					$value = implode( $between, array_slice( $values, 0, $size-1 ) ) . $before_last . $values[ $size-1 ];
 			}
 		}
 	}
