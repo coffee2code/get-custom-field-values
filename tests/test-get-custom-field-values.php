@@ -481,6 +481,27 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$this->assertEquals( '<span id="the-id" class="the-class">happy</span>', do_shortcode( '[custom_field field="mood" id="the-id" class="the-class"]' ) );
 	}
 
+	public function test_shortcode_with_field_and_id() {
+		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
+
+		$this->assertEquals( '<span id="the-id">happy</span>', do_shortcode( '[custom_field field="mood" id="the-id"]' ) );
+	}
+
+	public function test_shortcode_with_field_and_class() {
+		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
+
+		$this->assertEquals( '<span class="the-class">happy</span>', do_shortcode( '[custom_field field="mood" class="the-class"]' ) );
+	}
+
+	public function test_shortcode_with_field_and_no_id() {
+		$post_id1 = $this->create_post_with_meta();
+		$post_id2 = $this->create_post_with_meta( array( 'mood' => 'pleased' ) );
+
+		$this->assertEquals( 'happy and pleased', do_shortcode( '[custom_field field="mood" between=" and "]' ) );
+	}
+
 	public function test_shortcode_with_this_post() {
 		$post_id = $this->create_post_with_meta();
 		$GLOBALS['post'] = $post_id;
