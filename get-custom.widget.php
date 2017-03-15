@@ -2,7 +2,7 @@
 /**
  * Get Custom Field Values plugin widget code
  *
- * Copyright (c) 2004-2016 by Scott Reilly (aka coffee2code)
+ * Copyright (c) 2004-2017 by Scott Reilly (aka coffee2code)
  *
  * @package c2c_GetCustomWidget
  * @author  Scott Reilly
@@ -50,7 +50,7 @@ class c2c_GetCustomWidget extends c2c_Widget_013 {
 	/**
 	 * Loads the plugin textdomain.
 	 *
-	 * @since 0111
+	 * @since 011
 	 */
 	public function load_textdomain() {
 		load_plugin_textdomain( 'get-custom-field-values' );
