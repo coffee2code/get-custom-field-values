@@ -245,6 +245,7 @@ Examples:
 * Change: Update widget to 011:
     * Add `register_widget()` and change to calling it when hooking 'admin_init'
     * Load textdomain
+    * Add more substantial unit tests
 * Change: Update widget framework:
     * 013:
     * Add `get_config()` as a getter for config array

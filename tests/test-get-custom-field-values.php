@@ -42,6 +42,27 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		);
 	}
 
+	private function widget_init( $config = array() ) {
+		$post_id = $this->create_post_with_meta();
+
+		c2c_GetCustomWidget::register_widget();
+		$widget = new c2c_GetCustomWidget( 'abc_abc', '', array() );
+
+		$default_config = array();
+		foreach ( $widget->get_config() as $key => $val ) {
+			$default_config[ $key ] = $val['default'];
+		}
+		$config = array_merge( $default_config, $config );
+
+		if ( true === $config['post_id'] ) {
+			$config['post_id'] = $post_id;
+		}
+
+		$settings = array( 'before_title' => '', 'after_title' => '', );
+
+		return array( $post_id, $widget, $config, $settings );
+	}
+
 
 	//
 	//
@@ -543,7 +564,75 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	}
 
 	public function test_widget_made_available() {
-		$this->assertContains( 'c2c_GetCustomWidget', array_keys( $GLOBALS['wp_widget_factory']->widgets ) );
+		$this->assertArrayHasKey( 'c2c_GetCustomWidget', $GLOBALS['wp_widget_factory']->widgets );
+	}
+
+	public function test_widget_body_with_class() {
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'class' => 'abcd', 'post_id' => true )  );
+
+		$this->assertEquals( '<span class="abcd">happy</span>', $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_body_with_id() {
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'id' => 'myid', 'post_id' => true ) );
+
+		$this->assertEquals( '<span id="myid">happy</span>', $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_body_with_class_and_id() {
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'class' => 'abcd', 'id' => 'myid', 'post_id' => true ) );
+
+		$this->assertEquals( '<span id="myid" class="abcd">happy</span>', $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_body_with_class_and_id_but_no_meta_value() {
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'nonexistent', 'class' => 'abcd', 'id' => 'myid', 'post_id' => true ) );
+
+		$this->assertEmpty( $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_with_post_id_of_current_in_invalid_situation() {
+		$p_id = $this->create_post_with_meta( array( 'mood' => 'confused' ) );
+
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'post_id' => 'current' ) );
+
+		$this->assertNull( $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_with_post_id_of_current() {
+		$p_id = $this->create_post_with_meta( array( 'mood' => 'perplexed' ) );
+
+		// Simulate conditions when it is valid to run.
+		query_posts( array( 'p' => $p_id ) );
+
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'post_id' => 'current' ) );
+
+		$this->assertEquals( 'perplexed', $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_with_explicit_post_id() {
+		$p_id = $this->create_post_with_meta( array( 'mood' => 'joyous' ) );
+
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'post_id' => $p_id ) );
+
+		query_posts( array( 'p' => $post_id ) );
+
+		$this->assertEquals( 'joyous', $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_with_no_post_id() {
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood' ) );
+
+		query_posts( array( 'p' => $post_id ) );
+
+		$this->assertEquals( 'happy', $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_with_no_post_id_and_no_current_post() {
+		$post_id = $this->create_post_with_meta( array( 'mood' => 'befuddled' ) );
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'between' => ' and ' ) );
+
+		$this->assertEquals( 'befuddled and happy', $widget->widget_body( $config, '', $settings ) );
 	}
 
 }
