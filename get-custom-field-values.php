@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Get Custom Field Values
- * Version:     3.8
+ * Version:     3.9
  * Plugin URI:  http://coffee2code.com/wp-plugins/get-custom-field-values/
  * Author:      Scott Reilly
  * Author URI:  http://coffee2code.com/
@@ -18,7 +18,7 @@
  *
  * @package Get_Custom_Field_Values
  * @author  Scott Reilly
- * @version 3.8
+ * @version 3.9
  */
 
 /*
@@ -47,6 +47,7 @@
  * - Since it's shifting to args array, might as well support 'echo'
  * - Move shortcode wizard JS into file so it can be enqueued
  * - Handle serialized custom field values
+ * - Gutenberg: Adapt shortcode widget to block editor. Wizard should permit adding custom fields inline or as blocks.
  */
 
 /*
