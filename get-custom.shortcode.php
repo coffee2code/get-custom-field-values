@@ -130,6 +130,12 @@ class c2c_GetCustomFieldValuesShortcode {
 		$defaults = array();
 
 		foreach ( $this->widget_handler->get_config() as $opt => $values ) {
+			// Unlike widgets, shortcodes generally exist in the context of a post, so
+			// override widget default.
+			if ( 'this_post' === $opt ) {
+				$values['default'] = true;
+			}
+
 			$defaults[ $opt ] = isset( $values['default'] ) ? $values['default'] : '';
 		}
 

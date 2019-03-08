@@ -209,7 +209,7 @@ Attributes:
 * field       : (string) The name of the custom field key whose value you wish to have displayed.
 * id          : (string) The text to use as the 'id' attribute for a 'span' tag that wraps the output
 * class       : (string) The text to use as the 'class' attribute for a 'span' tag that wraps the output
-* this_post   : (boolean) Get the custom field value for the post containing this shortcode? Takes precedence over post_id attribute. Specify `1` (for true) or `0` for false. Default is `0`.
+* this_post   : (boolean) Get the custom field value for the post containing this shortcode? Takes precedence over post_id attribute. Specify `1` (for true) or `0` for false. Default is `1`.
 * post_id     : (integer) ID of post whose custom field's value you want to display. Leave blank to search for the custom field in any post. Use `0` to indicate it should only work on the permalink page for a page/post.
 * random      : (boolean) Pick random value? Specify `1` (for true) or `0` for false. Default is `0`.
 * limit       : (integer) The number of custom field items to list. Only applies if Post ID is empty and "Pick random value?" is unchecked. Use `0` to indicate no limit. Default is `0`.
@@ -234,6 +234,7 @@ Examples:
 == Changelog ==
 
 = () =
+* Fix: Default 'this_post' shortcode attribute to 1 instead of 0, since unlike widgets, shortcodes generally appear within the context of a post
 * Fix: Call `wpdb::prepare()` with the proper number of arguments depending on context
 * Change: Update shortcode builder widget to 005:
     * Don't show shortcode builder metabox within context of block editor
