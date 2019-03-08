@@ -208,7 +208,7 @@ This plugin provides one shortcode that can be used within the body of a post or
 
 The name of the shortcode can be changed via the filter 'c2c_get_custom_field_values_shortcode' (though making this customization is only recommended for before your first use of the shortcode, since changing to a new name will cause the shortcodes previously defined using the older name to no longer work).
 
-= custom_field =
+**custom_field**
 
 The only shortcode provided by this plugin is named `custom_field`. It is a self-closing tag, meaning that it is not meant to encapsulate text. Except for 'field', all attributes are optional, though you'll likely need to provide a couple to achieve your desired result.
 
@@ -251,6 +251,7 @@ Examples:
     * Directly load textdomain instead of hooking it to already-fired action
 * New: Add README.md
 * Change: Update docs to reflect that shortcode builder is not compatible with block editor yet
+* Change: Use different markdown formatting for shortcode name to avoid capitalization when displayed in Plugin Directory
 * Change: Add GitHub link to readme
 * Change: Unit tests: Minor whitespace tweaks to bootstrap
 * Change: Note compatibility through WP 5.1+
