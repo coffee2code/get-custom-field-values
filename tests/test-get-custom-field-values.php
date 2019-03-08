@@ -569,7 +569,7 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	}
 
 	public function test_widget_version() {
-		$this->assertEquals( '011', c2c_GetCustomWidget::version() );
+		$this->assertEquals( '012', c2c_GetCustomWidget::version() );
 	}
 
 	public function test_widget_base_class_name() {

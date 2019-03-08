@@ -238,6 +238,8 @@ Examples:
 * Change: Update shortcode builder widget to 005:
     * Don't show shortcode builder metabox within context of block editor
     * Add `show_metabox()`
+* Change: Update widget to 012:
+    * Directly load textdomain instead of hooking it to already-fired action
 * New: Add README.md
 * Change: Add GitHub link to readme
 * Change: Unit tests: Minor whitespace tweaks to bootstrap

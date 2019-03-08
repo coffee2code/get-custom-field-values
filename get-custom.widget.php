@@ -6,7 +6,7 @@
  *
  * @package c2c_GetCustomWidget
  * @author  Scott Reilly
- * @version 011
+ * @version 012
  */
 
 defined( 'ABSPATH' ) or die();
@@ -25,7 +25,7 @@ class c2c_GetCustomWidget extends c2c_Widget_013 {
 	 * @return string
 	 */
 	public static function version() {
-		return '011';
+		return '012';
 	}
 
 	/**
@@ -43,7 +43,8 @@ class c2c_GetCustomWidget extends c2c_Widget_013 {
 	public function __construct() {
 		parent::__construct( 'get-custom', __FILE__, array( 'width' => 300 ) );
 
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		$this->load_textdomain();
+
 		add_filter( $this->get_hook( 'excluded_form_options' ), array( $this, 'excluded_form_options' ) );
 	}
 
