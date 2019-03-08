@@ -470,8 +470,15 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 
 	public function test_shortcode_with_field() {
 		$post_id = $this->create_post_with_meta();
+		$GLOBALS['post'] = $post_id;
 
 		$this->assertEquals( 'happy', do_shortcode( '[custom_field field="mood"]' ) );
+	}
+
+	public function test_shortcode_with_field_and_no_global_post() {
+		$post_id = $this->create_post_with_meta();
+
+		$this->assertEmpty( do_shortcode( '[custom_field field="mood"]' ) );
 	}
 
 	public function test_shortcode_with_field_and_id_and_class() {
@@ -498,8 +505,16 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 	public function test_shortcode_with_field_and_no_id() {
 		$post_id1 = $this->create_post_with_meta();
 		$post_id2 = $this->create_post_with_meta( array( 'mood' => 'pleased' ) );
+		$GLOBALS['post'] = $post_id2;
 
-		$this->assertEquals( 'happy and pleased', do_shortcode( '[custom_field field="mood" between=" and "]' ) );
+		$this->assertEquals( 'pleased', do_shortcode( '[custom_field field="mood" between=" and "]' ) );
+	}
+
+	public function test_shortcode_with_field_and_no_id_and_not_this_post() {
+		$post_id1 = $this->create_post_with_meta();
+		$post_id2 = $this->create_post_with_meta( array( 'mood' => 'pleased' ) );
+
+		$this->assertEquals( 'happy and pleased', do_shortcode( '[custom_field field="mood" between=" and " this_post="0"]' ) );
 	}
 
 	public function test_shortcode_with_this_post() {
@@ -522,9 +537,19 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$post_id = $this->create_post_with_meta();
 		$GLOBALS['post'] = $post_id;
 
+		// Note: Limit is ignored in this scenario.
+		$this->assertEquals(
+			'Kids: adam, bob, cerise, and diane!',
+			do_shortcode( '[custom_field field="child" post_id="" limit="3" before="Kids: " after="!" between=", " before_last=", and "]' )
+		);
+	}
+
+	public function test_shortcode_with_limit_and_before_and_after_and_between_and_before_last_and_not_this_post() {
+		$post_id = $this->create_post_with_meta();
+
 		$this->assertEquals(
 			'Kids: adam, bob, and cerise!',
-			do_shortcode( '[custom_field field="child" post_id="" limit="3" before="Kids: " after="!" between=", " before_last=", and "]' )
+			do_shortcode( '[custom_field field="child" post_id="" this_post="0" limit="3" before="Kids: " after="!" between=", " before_last=", and "]' )
 		);
 	}
 
