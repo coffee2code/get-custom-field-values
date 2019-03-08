@@ -235,6 +235,9 @@ Examples:
 
 = () =
 * Fix: Call `wpdb::prepare()` with the proper number of arguments depending on context
+* Change: Update shortcode builder widget to 005:
+    * Don't show shortcode builder metabox within context of block editor
+    * Add `show_metabox()`
 * New: Add README.md
 * Change: Add GitHub link to readme
 * Change: Unit tests: Minor whitespace tweaks to bootstrap
