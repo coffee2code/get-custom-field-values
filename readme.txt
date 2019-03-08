@@ -3,7 +3,7 @@ Contributors: coffee2code
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6ARCFJ9TX3522
 Tags: custom fields, widget, widgets, shortcode, meta, extra, data, post, posts, page, pages, coffee2code
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 4.7
 Stable tag: 3.8
@@ -232,6 +232,9 @@ Examples:
 
 
 == Changelog ==
+
+= () =
+* Change: Update License URI to be HTTPS
 
 = 3.8 (2017-03-14) =
 * New: Add support for percent-substitution tags

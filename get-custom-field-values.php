@@ -7,7 +7,7 @@
  * Author URI:  http://coffee2code.com/
  * Text Domain: get-custom-field-values
  * License:     GPLv2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Description: Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
  *
  * Compatible with WordPress 3.6+ through 4.7+.
