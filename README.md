@@ -15,7 +15,7 @@ A plugin for WordPress that provides widgets, shortcodes, and template tags to e
 
 ## Additional Documentation
 
-See [readme.txt](https://github.com/coffee2code/get-custom-field-values/blob/master/readme.txt) for additional usage information.
+See [readme.txt](https://github.com/coffee2code/get-custom-field-values/blob/master/readme.txt) for additional usage information. See [CHANGELOG.md](CHANGELOG.md) for the list of changes for each release.
 
 
 ## Support
