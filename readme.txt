@@ -234,6 +234,7 @@ Examples:
 == Changelog ==
 
 = () =
+* Fix: Call `wpdb::prepare()` with the proper number of arguments depending on context
 * New: Add README.md
 * Change: Add GitHub link to readme
 * Change: Unit tests: Minor whitespace tweaks to bootstrap

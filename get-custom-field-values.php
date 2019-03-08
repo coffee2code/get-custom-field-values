@@ -280,7 +280,11 @@ function c2c_get_recent_custom( $field, $before='', $after='', $none='', $betwee
 	}
 
 	$values  = array();
-	$results = $wpdb->get_results( $wpdb->prepare( $sql, $field, $limit ) );
+	if ( $limit > 0 ) {
+		$results = $wpdb->get_results( $wpdb->prepare( $sql, $field, $limit ) );
+	} else {
+		$results = $wpdb->get_results( $wpdb->prepare( $sql, $field ) );
+	}
 
 	if ( $results ) {
 		foreach ( $results as $result ) { $values[] = $result->meta_value; };
