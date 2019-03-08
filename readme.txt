@@ -234,6 +234,7 @@ Examples:
 == Changelog ==
 
 = () =
+* Change: Update copyright date (2019)
 * Change: Update License URI to be HTTPS
 
 = 3.8 (2017-03-14) =
