@@ -147,7 +147,7 @@ class c2c_GetCustomFieldValuesShortcode {
 
 		$ret = '';
 
-		if ( $post_id && ! $this_post ) {
+		if ( $post_id ) {
 			if ( 'current' == $post_id ) {
 				$ret = c2c_get_current_custom( $field, $before, $after, $none, $between, $before_last );
 			} elseif ( $random ) {

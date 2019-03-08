@@ -220,7 +220,7 @@ Attributes:
 * this_post   : (boolean) Get the custom field value for the post containing this shortcode? Takes precedence over post_id attribute. Specify `1` (for true) or `0` for false. Default is `1`.
 * post_id     : (integer) ID of post whose custom field's value you want to display. Leave blank to search for the custom field in any post. Use `0` to indicate it should only work on the permalink page for a page/post.
 * random      : (boolean) Pick random value? Specify `1` (for true) or `0` for false. Default is `0`.
-* limit       : (integer) The number of custom field items to list. Only applies if Post ID is empty and "Pick random value?" is unchecked. Use `0` to indicate no limit. Default is `0`.
+* limit       : (integer) The number of custom field items to list. Only applies if 'post_id' is blank/unset, 'this_post' is 0, and 'random' is blank/unset. Use `0` to indicate no limit. Default is `0`.
 * before      : (string) Text to display before the custom field.
 * after       : (string) Text to display after the custom field.
 * none        : (string) Text to display if no matching custom field is found (or it has no value). Leave this blank if you don't want anything to display when no match is found.
