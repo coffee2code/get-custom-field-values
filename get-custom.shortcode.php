@@ -6,7 +6,7 @@
  *
  * @package c2c_GetCustomFieldValuesShortcode
  * @author  Scott Reilly
- * @version 005
+ * @version 006
  */
 
 defined( 'ABSPATH' ) or die();
@@ -28,7 +28,7 @@ class c2c_GetCustomFieldValuesShortcode {
 	 * @return string
 	 */
 	public static function version() {
-		return '005';
+		return '006';
 	}
 
 	/**
@@ -75,7 +75,9 @@ class c2c_GetCustomFieldValuesShortcode {
 	 * @return bool True if the metabox can be shown, false otherwise.
 	 */
 	public function show_metabox() {
-		return ! get_current_screen()->is_block_editor();
+		$current_screen = get_current_screen();
+
+		return ! method_exists( $current_screen, 'is_block_editor' ) || ! $current_screen->is_block_editor();
 	}
 
 	/**
