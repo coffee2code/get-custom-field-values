@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 5.1
-Stable tag: 3.9
+Stable tag: 3.9.1
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -241,6 +241,11 @@ Examples:
 
 == Changelog ==
 
+= 3.9.1 (2019-03-15) =
+* Change: Update shortcode builder widget to 006:
+    * Fix: Check that `is_block_editor()` exists before using it, preventing an error when attempting to edit pages in WP older than 5.0
+* New: Add changelog for v3.9 to CHANGELOG.md
+
 = 3.9 (2019-03-08) =
 * Fix: Default 'this_post' shortcode attribute to 1 instead of 0, since unlike widgets, shortcodes generally appear within the context of a post
 * Fix: Call `wpdb::prepare()` with the proper number of arguments depending on context
@@ -321,6 +326,9 @@ Examples:
 
 
 == Upgrade Notice ==
+
+= 3.9.1 =
+Bugfix update (for users of WP earlier than 5.0): Fixed bug preventing post edit page from loading.
 
 = 3.9 =
 Recommended update: Fixed minor bug, changed 'this_post' shortcode attribute default to 1 so it can be omitted from most shortcodes, disabled shortcode builder under block editor (it's incompatible), noted compatibility through WP 5.1+, updated copyright date (2019), more.
