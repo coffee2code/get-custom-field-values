@@ -1,5 +1,26 @@
 # ChangeLog
 
+## ()
+* New: Add changelog for v3.9 to CHANGELOG.md
+
+## 3.9 _(2019-03-08)_
+* Fix: Default 'this_post' shortcode attribute to 1 instead of 0, since unlike widgets, shortcodes generally appear within the context of a post
+* Fix: Call `wpdb::prepare()` with the proper number of arguments depending on context
+* Change: Update shortcode builder widget to 005:
+    * Don't show shortcode builder metabox within context of block editor
+    * Add `show_metabox()`
+* Change: Update widget to 012:
+    * Directly load textdomain instead of hooking it to already-fired action
+* New: Add README.md
+* New: Add CHANGELOG.md and move all but most recent changelog entries into it
+* Change: Update docs to reflect that shortcode builder is not compatible with block editor yet
+* Change: Use different markdown formatting for shortcode name to avoid capitalization when displayed in Plugin Directory
+* Change: Add GitHub link to readme
+* Change: Unit tests: Minor whitespace tweaks to bootstrap
+* Change: Note compatibility through WP 5.1+
+* Change: Update copyright date (2019)
+* Change: Update License URI to be HTTPS
+
 ## 3.8 _(2017-03-14)_
 * New: Add support for percent-substitution tags
     * Tags can be used in before and/or after text and will be replaced on display with the custom field text
