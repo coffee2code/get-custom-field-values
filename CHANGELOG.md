@@ -2,6 +2,7 @@
 
 ## _(in-progress)_
 * Change: Note compatibility through WP 5.3+
+* Change: Update copyright date (2020)
 
 ## 3.9.1 _(2019-03-15)_
 * Change: Update shortcode builder widget to 006:

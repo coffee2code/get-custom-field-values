@@ -2,7 +2,7 @@
 /**
  * Get Custom Field Values plugin widget code
  *
- * Copyright (c) 2004-2019 by Scott Reilly (aka coffee2code)
+ * Copyright (c) 2004-2020 by Scott Reilly (aka coffee2code)
  *
  * @package c2c_GetCustomWidget
  * @author  Scott Reilly

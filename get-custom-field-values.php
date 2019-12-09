@@ -51,7 +51,7 @@
  */
 
 /*
-	Copyright (c) 2004-2019 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2004-2020 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
