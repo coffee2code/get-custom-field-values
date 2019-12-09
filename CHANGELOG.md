@@ -4,6 +4,7 @@
 * Unit test:
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
 * Change: Note compatibility through WP 5.3+
+* Change: Add link to plugin's page in Plugin Directory to README.md
 * Change: Update copyright date (2020)
 
 ## 3.9.1 _(2019-03-15)_

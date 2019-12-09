@@ -2,6 +2,8 @@
 
 A plugin for WordPress that provides widgets, shortcodes, and template tags to easily retrieve and display custom field values for posts or pages.
 
+This plugin can be found in the WordPress Plugin Directory: https://wordpress.org/plugins/get-custom-field-values/
+
 
 ## Installation
 
