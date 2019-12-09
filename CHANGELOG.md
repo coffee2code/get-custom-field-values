@@ -1,5 +1,8 @@
 # ChangeLog
 
+## _(in-progress)_
+* Change: Note compatibility through WP 5.3+
+
 ## 3.9.1 _(2019-03-15)_
 * Change: Update shortcode builder widget to 006:
     * Fix: Check that `is_block_editor()` exists before using it, preventing an error when attempting to edit pages in WP older than 5.0
