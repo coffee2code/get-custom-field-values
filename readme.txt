@@ -322,7 +322,7 @@ Examples:
 * Change: Note compatibility through WP 4.4+.
 * Change: Update copyright date (2016).
 
-= Full changelog is available in [CHANGELOG.md](CHANGELOG.md). =
+_Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/get-custom-field-values/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
