@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 5.3
-Stable tag: 3.9.1
+Stable tag: 3.9.2
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -241,6 +241,13 @@ Examples:
 
 == Changelog ==
 
+= 3.9.2 (2019-12-08) =
+* Change: Note compatibility through WP 5.3+
+* Change: Unit test: Update unit test install script and bootstrap to use latest WP unit test repo
+* Change: Use full URL for readme.txt link to full changelog
+* Change: Add link to plugin's page in Plugin Directory to README.md
+* Change: Update copyright date (2020)
+
 = 3.9.1 (2019-03-15) =
 * Change: Update shortcode builder widget to 006:
     * Fix: Check that `is_block_editor()` exists before using it, preventing an error when attempting to edit pages in WP earlier than 5.0
@@ -326,6 +333,9 @@ _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/ge
 
 
 == Upgrade Notice ==
+
+= 3.9.2 =
+Trivial update: modernized unit tests, noted compatibility through WP 5.3+, and updated copyright date (2020)
 
 = 3.9.1 =
 Bugfix update (for users of WP earlier than 5.0): Fixed bug preventing post edit page from loading.
