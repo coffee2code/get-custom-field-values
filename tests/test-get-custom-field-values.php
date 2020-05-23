@@ -591,6 +591,15 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		);
 	}
 
+	// Note this currently only tests custom markup amended to the widget handler's form()
+	public function test_shortcode_form() {
+		$expected = '<p class="submit">'
+			. '<input type="button" class="button-primary" onclick="return admin_shortcode_get_custom_field_values.sendToEditor(this.form);" value="Send shortcode to editor" />'
+			. '</p>';
+
+		$this->expectOutputRegex( '~' . preg_quote( $expected ) . '~', c2c_GetCustomFieldValuesShortcode::$instance->form() );
+	}
+
 	/* Widget */
 
 	public function test_widget_class_exists() {
