@@ -6,6 +6,7 @@
     * New: Store object instantiated during `register()`
     * Change: Cast return value of `c2c_get_custom_field_values_post_types` filter as an array
     * Change: Sanitize strings used in markup attributes (hardening)
+    * Change: Add a missing textdomain for string translation
 * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests, and removed commented-out code
 * Change: Note compatibility through WP 5.4+
 * Change: Update links to coffee2code.com to be HTTPS
