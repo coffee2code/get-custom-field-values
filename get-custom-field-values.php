@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Get Custom Field Values
- * Version:     3.9.2
+ * Version:     3.9.3
  * Plugin URI:  https://coffee2code.com/wp-plugins/get-custom-field-values/
  * Author:      Scott Reilly
  * Author URI:  https://coffee2code.com/
@@ -18,7 +18,7 @@
  *
  * @package Get_Custom_Field_Values
  * @author  Scott Reilly
- * @version 3.9.2
+ * @version 3.9.3
  */
 
 /*

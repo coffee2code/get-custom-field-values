@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 5.4
-Stable tag: 3.9.2
+Stable tag: 3.9.3
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -241,6 +241,18 @@ Examples:
 
 == Changelog ==
 
+= 3.9.3 (2020-05-23) =
+* New: Add TODO.md and move existing TODO list from top of main plugin file into it
+* Change: Update shortcode builder widget to 007:
+    * New: Store object instantiated during `register()`
+    * Change: Cast return value of `c2c_get_custom_field_values_post_types` filter as an array
+    * Change: Sanitize strings used in markup attributes (hardening)
+    * Change: Add a missing textdomain for string translation
+* Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests, and removed commented-out code
+* Change: Note compatibility through WP 5.4+
+* Change: Update links to coffee2code.com to be HTTPS
+* Change: Fix typo in FAQ
+
 = 3.9.2 (2019-12-08) =
 * Change: Note compatibility through WP 5.3+
 * Change: Unit test: Update unit test install script and bootstrap to use latest WP unit test repo
@@ -271,68 +283,13 @@ Examples:
 * Change: Update copyright date (2019)
 * Change: Update License URI to be HTTPS
 
-= 3.8 (2017-03-14) =
-* New: Add support for percent-substitution tags
-    * Tags can be used in before and/or after text and will be replaced on display with the custom field text
-    * Add '%field%' to display custom field name
-    * Add '%value%' to display custom field value
-    * Add `c2c__gcfv_do_substitutions()` to handle the substitutions
-* Fix: Properly handle serialized meta values
-* Fix: Properly sanitize field name prior so use as part of a hook name
-* Fix: Add missing textdomain for string in shortcode widget
-* Change: Update widget to 011:
-    * Add `register_widget()` and change to calling it when hooking 'admin_init'
-    * Load textdomain
-    * Add more substantial unit tests
-* Change: Update widget framework:
-    * 013:
-    * Add `get_config()` as a getter for config array
-    * 012:
-    * Go back to non-plugin-specific class name of c2c_Widget_012
-    * Don't load textdomain
-    * Declare class and `load_config()` and `widget_body()` as being abstract
-    * Change class variable `$config` from public to protected
-    * Discontinue use of `extract()`
-    * Apply 'widget_title' filter to widget title
-    * Add more inline documentation
-    * Minor code reformatting (spacing, bracing, Yoda-ify conditions)
-* Change: Update shortcode builder widget to 004:
-    * Use `get_config()` to get widget config now that the object variable is protected
-    * Add `register()` and change to calling it when hooking 'init'
-    * Add more unit tests
-* Change: Update unit test bootstrap
-    * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
-    * Enable more error output for unit tests
-* Change: Use officially documented order of arguments for `implode()`
-* Change: Rephrase conditions to omit unnecessary use of `empty()`
-* Change: Tweak readme.txt (minor content changes, spacing)
-* Change: Note compatibility through WP 4.7+
-* Change: Update copyright date (2017)
-* New: Add LICENSE file
-
-= 3.7 (2016-01-31) =
-* Change: Update widget framework to 011:
-    * Change class name to c2c_GetCustomFieldValues_Widget_011 to be plugin-specific.
-    * Set textdomain using a string instead of a variable.
-    * Remove `load_textdomain()` and textdomain class variable.
-    * Formatting improvements to inline docs.
-* Change: Add support for language packs:
-    * Set textdomain using a string instead of a variable.
-    * Don't load textdomain from file.
-    * Remove .pot file and /lang subdirectory.
-    * Remove 'Domain Path' from plugin header.
-    * Add 'Text Domain' to plugin header.
-* Change: Reformat plugin settings code (spacing).
-* Change: Explicitly declare methods in unit tests as public.
-* Change: Minor improvements to inline docs and test docs.
-* New: Create empty index.php to prevent files from being listed if web server has enabled directory listings.
-* Change: Note compatibility through WP 4.4+.
-* Change: Update copyright date (2016).
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/get-custom-field-values/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 3.9.3 =
+Trivial update: Added TODO.md file, tweaked shortcode builder code, updated a few URLs to be HTTPS, and noted compatibility through WP 5.4+.
 
 = 3.9.2 =
 Trivial update: modernized unit tests, noted compatibility through WP 5.3+, and updated copyright date (2020)

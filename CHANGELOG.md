@@ -1,6 +1,6 @@
 # ChangeLog
 
-## _(in-progress)_
+## 3.9.3 _(2020-05-23)_
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it
 * Change: Update shortcode builder widget to 007:
     * New: Store object instantiated during `register()`
