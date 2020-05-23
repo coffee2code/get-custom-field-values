@@ -9,6 +9,7 @@
 * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests, and removed commented-out code
 * Change: Note compatibility through WP 5.4+
 * Change: Update links to coffee2code.com to be HTTPS
+* Change: Fix typo in FAQ
 
 ## 3.9.2 _(2019-12-08)_
 * Change: Note compatibility through WP 5.3+
