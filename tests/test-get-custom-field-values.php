@@ -464,6 +464,10 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$this->assertEquals( '007', c2c_GetCustomFieldValuesShortcode::version() );
 	}
 
+	public function test_shortcode_instance() {
+		$this->assertTrue( is_a( c2c_GetCustomFieldValuesShortcode::$instance, 'c2c_GetCustomFieldValuesShortcode' ) );
+	}
+
 	public function test_shortcode_hooks_init() {
 		$this->assertEquals( 11, has_filter( 'init', array( 'c2c_GetCustomFieldValuesShortcode', 'register' ) ) );
 	}

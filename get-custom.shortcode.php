@@ -14,6 +14,15 @@ defined( 'ABSPATH' ) or die();
 if ( ! class_exists( 'c2c_GetCustomFieldValuesShortcode' ) && class_exists( 'c2c_GetCustomWidget' ) ) :
 
 class c2c_GetCustomFieldValuesShortcode {
+	/**
+	 * The instance of this object.
+	 *
+	 * @access public
+	 * @since 007
+	 * @var c2c_GetCustomFieldValuesShortcode
+	 */
+	public static $instance;
+
 	public $name           = 'shortcode_get_custom_field_values';
 	public $shortcode      = 'custom_field';
 	public $title          = '';
@@ -37,7 +46,7 @@ class c2c_GetCustomFieldValuesShortcode {
 	 * @since 004
 	 */
 	public static function register() {
-		new self( $GLOBALS['wp_widget_factory']->widgets['c2c_GetCustomWidget'] );
+		self::$instance = new self( $GLOBALS['wp_widget_factory']->widgets['c2c_GetCustomWidget'] );
 	}
 
 	/**
