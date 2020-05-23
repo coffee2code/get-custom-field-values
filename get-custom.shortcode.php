@@ -97,7 +97,7 @@ class c2c_GetCustomFieldValuesShortcode {
 			return;
 		}
 
-		$post_types = apply_filters( 'c2c_get_custom_field_values_post_types', get_post_types() );
+		$post_types = (array) apply_filters( 'c2c_get_custom_field_values_post_types', get_post_types() );
 		if ( ! in_array( $post_type, $post_types ) ) {
 			return;
 		}
