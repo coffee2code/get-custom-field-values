@@ -1,5 +1,8 @@
 # ChangeLog
 
+## _(in-progress)_
+* Change: Note compatibility through WP 5.4+
+
 ## 3.9.2 _(2019-12-08)_
 * Change: Note compatibility through WP 5.3+
 * Change: Unit test: Update unit test install script and bootstrap to use latest WP unit test repo
