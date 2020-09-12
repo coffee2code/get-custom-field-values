@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 5.5
-Stable tag: 3.9.3
+Stable tag: 3.9.4
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -241,6 +241,15 @@ Examples:
 
 == Changelog ==
 
+= 3.9.4 (2020-09-11) =
+* Change: Restructure unit test file structure
+    * New: Create new subdirectory `phpunit/` to house all files related to unit testing
+    * Change: Move `bin/` to `phpunit/bin/`
+    * Change: Move `tests/bootstrap.php` to `phpunit/`
+    * Change: Move `tests/` to `phpunit/tests/`
+    * Change: Rename `phpunit.xml` to `phpunit.xml.dist` per best practices
+* Change: Note compatibility through WP 5.5+
+
 = 3.9.3 (2020-05-23) =
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it
 * Change: Update shortcode builder widget to 007:
@@ -260,33 +269,13 @@ Examples:
 * Change: Add link to plugin's page in Plugin Directory to README.md
 * Change: Update copyright date (2020)
 
-= 3.9.1 (2019-03-15) =
-* Change: Update shortcode builder widget to 006:
-    * Fix: Check that `is_block_editor()` exists before using it, preventing an error when attempting to edit pages in WP earlier than 5.0
-* New: Add changelog for v3.9 to CHANGELOG.md
-
-= 3.9 (2019-03-08) =
-* Fix: Default 'this_post' shortcode attribute to 1 instead of 0, since unlike widgets, shortcodes generally appear within the context of a post
-* Fix: Call `wpdb::prepare()` with the proper number of arguments depending on context
-* Change: Update shortcode builder widget to 005:
-    * Don't show shortcode builder metabox within context of block editor
-    * Add `show_metabox()`
-* Change: Update widget to 012:
-    * Directly load textdomain instead of hooking it to already-fired action
-* New: Add README.md
-* New: Add CHANGELOG.md and move all but most recent changelog entries into it
-* Change: Update docs to reflect that shortcode builder is not compatible with block editor yet
-* Change: Use different markdown formatting for shortcode name to avoid capitalization when displayed in Plugin Directory
-* Change: Add GitHub link to readme
-* Change: Unit tests: Minor whitespace tweaks to bootstrap
-* Change: Note compatibility through WP 5.1+
-* Change: Update copyright date (2019)
-* Change: Update License URI to be HTTPS
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/get-custom-field-values/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 3.9.4 =
+Trivial update: Restructured unit test file structure and noted compatibility through WP 5.5+.
 
 = 3.9.3 =
 Trivial update: Added TODO.md file, tweaked shortcode builder code, updated a few URLs to be HTTPS, and noted compatibility through WP 5.4+.
