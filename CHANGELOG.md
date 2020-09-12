@@ -1,5 +1,8 @@
 # ChangeLog
 
+## _(in-progress)_
+* Change: Note compatibility through WP 5.5+
+
 ## 3.9.3 _(2020-05-23)_
 * New: Add TODO.md and move existing TODO list from top of main plugin file into it
 * Change: Update shortcode builder widget to 007:
