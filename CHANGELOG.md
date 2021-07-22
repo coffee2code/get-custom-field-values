@@ -1,5 +1,8 @@
 # ChangeLog
 
+## _(in-progress)_
+* Change: Update copyright date (2021)
+
 ## 3.9.4 _(2020-09-11)_
 * Change: Restructure unit test file structure
     * New: Create new subdirectory `phpunit/` to house all files related to unit testing
