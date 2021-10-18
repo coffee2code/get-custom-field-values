@@ -11,7 +11,7 @@ class Get_Custom_Field_Values_Widget_Test extends WP_UnitTestCase {
 	//
 
 
-	private function create_post_with_meta( $metas = array(), $post_data = array() ) {
+	private function create_post_with_meta( $metas = array(), $post_data = array(), $make_global = false ) {
 		$post_id = $this->factory->post->create( $post_data );
 
 		if ( ! $metas ) {
@@ -26,6 +26,11 @@ class Get_Custom_Field_Values_Widget_Test extends WP_UnitTestCase {
 			} else {
 				add_post_meta( $post_id, $key, $val );
 			}
+		}
+
+		if ( $make_global ) {
+			global $post;
+			$post = get_post( $post_id );
 		}
 
 		return $post_id;

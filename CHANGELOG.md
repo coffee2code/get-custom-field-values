@@ -11,6 +11,7 @@
         * New: Add `create_user()` for creating a user and optionally making them the current user
         * New: Add `unset_current_user()` for unsetting the current user
         * New: Add `tearDown()` to ensure current user gets unset after each test
+    * Change: Add optional arg `$make_global` (defaulted to false) to `create_post_with_meta()` to facilitate making the created post global
     * Change: Restructure unit test file structure
         * Change: Move `phpunit/bin/` to `tests/bin/`
         * Change: Move `phpunit/bootstrap.php` into `tests/phpunit/`
