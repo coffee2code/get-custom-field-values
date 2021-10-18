@@ -6,6 +6,7 @@
 * Change: Tweak installation instruction
 * Unit tests:
     * Change: Split shortcode-related tests out into their own file
+    * Change: Split widget-related tests out into their own file
     * Change: Restructure unit test file structure
         * Change: Move `phpunit/bin/` to `tests/bin/`
         * Change: Move `phpunit/bootstrap.php` into `tests/phpunit/`
