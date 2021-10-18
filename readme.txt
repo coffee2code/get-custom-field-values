@@ -97,146 +97,25 @@ Yes, except that the shortcode builder (a custom tool to facilitate making use o
 Yes.
 
 
-== Template Tags ==
+== Developer Documentation ==
 
-The plugin provides six optional template tags for use in your theme templates.
+Developer documentation can be found in [DEVELOPER-DOCS.md](https://github.com/coffee2code/get-custom-field-values/blob/master/DEVELOPER-DOCS.md). That documentation covers the numerous template tags, hooks, and shortcode provided by the plugin.
 
-= Functions =
+As an overview, these are the template tags provided the plugin:
 
-* `<?php function c2c_get_custom( $field, $before='', $after='', $none='', $between='', $before_last='' ) ?>`
-Template tag for use inside "the loop" and applies to the currently listed post.
+* `c2c_get_custom()`             : Template tag for use inside "the loop" and applies to the currently listed post.
+* `c2c_get_current_custom()`     : Template tag for use on permalink (aka single) page templates for posts and pages.
+* `c2c_get_post_custom()`        : Template tag for use when you know the ID of the post you're interested in.
+* `c2c_get_random_custom()`      : Template tag for use to retrieve a random custom field value.
+* `c2c_get_random_post_custom()` : Template tag for use to retrieve random custom field value(s) from a post when you know the ID of the post you're interested in.
+* `c2c_get_recent_custom()`      : Template tag for use outside "the loop" and applies for custom fields regardless of post.
 
-* `<?php function c2c_get_current_custom( $field, $before='', $after='', $none='', $between='', $before_last='' ) ?>`
+These are the hooks provided by the plugin:
 
-Template tag for use on permalink (aka single) page templates for posts and pages.
+* `c2c_get_custom_field_values_shortcode`  : Filter to customize the name of the plugin's shortcode.
+* `c2c_get_custom_field_values_post_types` : Filter to customize the post types that should support the shortcode builder metabox.
 
-* `<?php function c2c_get_post_custom( $post_id, $field, $before='', $after='', $none='', $between='', $before_last='' ) ?>`
-
-Template tag for use when you know the ID of the post you're interested in.
-
-* `<?php function c2c_get_random_custom( $field, $before='', $after='', $none='', $limit=1, $between='', $before_last='' ) ?>`
-Template tag for use to retrieve a random custom field value.
-
-* `<?php function c2c_get_random_post_custom( $post_id, $field, $limit=1, $before='', $after='', $none='', $between='', $before_last='' ) ?>`
-Template tag for use to retrieve random custom field value(s) from a post when you know the ID of the post you're interested in.
-
-* `<?php function c2c_get_recent_custom( $field, $before='', $after='', $none='', $between=', ', $before_last='', $limit=1, $unique=false, $order='DESC', $include_pages=true, $show_pass_post=false )  ?>`
-Template tag for use outside "the loop" and applies for custom fields regardless of post.
-
-= Arguments =
-
-* `$post_id`
-Required argument (only used in `c2c_get_post_custom()`). The ID of the post from which the custom field should be obtained.
-
-* `$field`
-Required argument. The custom field key of interest.
-
-* `$before`
-Optional argument. The text to display before all the custom field value(s), if any are present (defaults to '').
-
-* `$after`
-Optional argument. The text to display after all the custom field value(s), if any are present (defaults to '')
-
-* `$none`
-Optional argument. The text to display in place of the field value should no field values exist; if defined as '' and no field value exists, then nothing (including no `$before` and `$after`) gets displayed.
-
-* `$between`
-Optional argument. The text to display between multiple occurrences of the custom field; if defined as '', then only the first instance will be used.
-
-* `$before_last`
-Optional argument. The text to display between the next-to-last and last items listed when multiple occurrences of the custom field; `$between` MUST be set to something other than '' for this to take effect.
-
-Arguments that only apply to `c2c_get_recent_custom()`:
-
-* `$limit`
-Optional argument. The limit to the number of custom fields to retrieve. (also used by `c2c_get_random_custom` and `c2c_get_random_post_custom()`)
-
-* `$unique`
-Optional argument. Boolean ('true' or 'false') to indicate if each custom field value in the results should be unique.
-
-* `$order`
-Optional argument. Indicates if the results should be sorted in chronological order ('ASC') (the earliest custom field value listed first), or reverse chronological order ('DESC') (the most recent custom field value listed first).
-
-* `$include_pages`
-Optional argument. Boolean ('true' or 'false') to indicate if pages should be included when retrieving recent custom values; default is 'true'.
-
-* `$show_pass_post`
-Optional argument. Boolean ('true' or 'false') to indicate if password protected posts should be included when retrieving recent custom values; default is 'false'.
-
-= Examples =
-
-* `<?php echo c2c_get_custom('mymood'); ?>  // with this simple invocation, you can echo the value of any metadata field`
-
-* `<?php echo c2c_get_custom('mymood', 'Today's moods: ', '', ', '); ?>`
-
-* `<?php echo c2c_get_recent_custom('mymood', 'Most recent mood: '); ?>`
-
-* `<?php echo c2c_get_custom('mymood', '(Current mood: ', ')', ''); ?>`
-
-* `<?php echo c2c_get_custom('mylisten', 'Listening to : ', '', 'No one at the moment.'); ?>`
-
-* `<?php echo c2c_get_custom('myread', 'I\'ve been reading ', ', if you must know.', 'nothing'); ?>`
-
-* `<?php echo c2c_get_custom('todays_link', '<a class="tlink" href="', '" >Today\'s Link</a>'); ?>`
-
-* `<?php echo c2c_get_current_custom('meta_description', '<meta name="description" content="', '" />' ); ?>`
-
-* `<?php echo c2c_get_post_custom($post->ID, 'Price: ', ' (non-refundable)'); ?>`
-
-* `<?php echo c2c_get_random_custom('featured_image', '<img src="/wp-content/images/', '" />'); ?>`
-
-* `<?php echo c2c_get_random_post_custom($post->ID, 'quote', 1, 'Quote: <em>', '</em>'); ?>`
-
-* `<?php echo c2c_get_custom('related_offsite_links', 
-	   'Here\'s a list of offsite links related to this post:<ol><li><a href="',
-	   '">Related</a></li></ol>',
-	   '',
-	   '">Related</a></li><li><a href="'); ?>`
-
-* `<?php echo c2c_get_custom('more_pictures',
-	   'Pictures I\'ve taken today:<br /><div class="more_pictures"><img alt="[photo]" src="',
-	   '" /></div>',
-	   '',
-	   '" /> : <img alt="[photo]" src="'); ?>`
-
-* Custom 'more...' link text, by replacing `<?php the_content(); ?>` in index.php with this: `<?php the_content(c2c_get_custom('more', '<span class="morelink">', '</span>', '(more...)')); ?>`
-
-
-== Shortcode ==
-
-This plugin provides one shortcode that can be used within the body of a post or page. The shortcode is accompanied by a shortcode builder (see Screenshots) that presents a form for easily creating a shortcode. However, here's the documentation for the shortcode and its supported attributes.
-
-The name of the shortcode can be changed via the filter 'c2c_get_custom_field_values_shortcode' (though making this customization is only recommended for before your first use of the shortcode, since changing to a new name will cause the shortcodes previously defined using the older name to no longer work).
-
-**custom_field**
-
-The only shortcode provided by this plugin is named `custom_field`. It is a self-closing tag, meaning that it is not meant to encapsulate text. Except for 'field', all attributes are optional, though you'll likely need to provide a couple to achieve your desired result.
-
-Attributes:
-
-* field       : (string) The name of the custom field key whose value you wish to have displayed.
-* id          : (string) The text to use as the 'id' attribute for a 'span' tag that wraps the output
-* class       : (string) The text to use as the 'class' attribute for a 'span' tag that wraps the output
-* this_post   : (boolean) Get the custom field value for the post containing this shortcode? Takes precedence over post_id attribute. Specify `1` (for true) or `0` for false. Default is `1`.
-* post_id     : (integer) ID of post whose custom field's value you want to display. Leave blank to search for the custom field in any post. Use `0` to indicate it should only work on the permalink page for a page/post.
-* random      : (boolean) Pick random value? Specify `1` (for true) or `0` for false. Default is `0`.
-* limit       : (integer) The number of custom field items to list. Only applies if 'post_id' is blank/unset, 'this_post' is 0, and 'random' is blank/unset. Use `0` to indicate no limit. Default is `0`.
-* before      : (string) Text to display before the custom field.
-* after       : (string) Text to display after the custom field.
-* none        : (string) Text to display if no matching custom field is found (or it has no value). Leave this blank if you don't want anything to display when no match is found.
-* between     : (string) Text to display between custom field items if more than one are being shown. Default is ', '.
-* before_last : (string) Text to display between the second to last and last custom field items if more than one are being shown.
-
-Examples:
-
-* Get list of sizes for the current post
-`[custom_field field="size" limit="0" between=", " this_post="1" /]`
-
-* Get random random quote
-`[custom_field field="quote" limit="1" random="1" /]`
-
-* Get 3 most recent books read
-`[custom_field field="book" limit="3" before="Recently read books: " /]`
+The shortcode provided is `[custom-field]`, which has a number of attributes to customize its behavior and output.
 
 
 == Changelog ==

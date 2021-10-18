@@ -5,6 +5,7 @@
     * Prevents potential information disclosure due to accessing post meta in posts authored by higher-privileged users
     * New: Add shortcode class function `can_author_use_shortcodes()`
     * New: Add filter `'get_custom_field_values/can_author_use_shortcodes'`
+* New: Add DEVELOPER-DOCS.md and move template tag and shortcode documentation into it
 * Change: Note compatibility through WP 5.8+
 * Change: Update copyright date (2021)
 * Change: Tweak installation instruction
