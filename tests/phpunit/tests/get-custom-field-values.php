@@ -354,9 +354,16 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		}
 
 		$random_1 = c2c_get_random_custom( 'color' );
-		$random_2 = c2c_get_random_custom( 'color' );
 
-		$this->assertFalse( $random_1 == $random_2 ); // It's possible the same item was randomly selected back-to-back
+		// Obtain a random color, but retry up to 5 times if the same color
+		// gets chosen.
+		$i = 0;
+		do {
+			$random_2 = c2c_get_random_custom( 'color' );
+			$i++;
+		} while ( $i < 5 && $random_1 === $random_2 );
+
+		$this->assertFalse( $random_1 === $random_2 ); // Might fail in the highly unlinkely but possible case the same item was randomly selected 6 times in a row
 		$this->assertContains( $random_1, $colors );
 		$this->assertContains( $random_2, $colors );
 	}
