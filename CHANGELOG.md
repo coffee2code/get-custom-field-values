@@ -5,6 +5,7 @@
     * Prevents potential information disclosure due to accessing post meta in posts authored by higher-privileged users
     * New: Add shortcode class function `can_author_use_shortcodes()`
     * New: Add filter `'get_custom_field_values/can_author_use_shortcodes'`
+    * Change: Prevent display of shortcode builder metabox to users who cannot publish posts
 * New: Add DEVELOPER-DOCS.md and move template tag and shortcode documentation into it
 * Change: Note compatibility through WP 5.8+
 * Change: Update copyright date (2021)
@@ -16,6 +17,7 @@
         * New: Add `create_user()` for creating a user and optionally making them the current user
         * New: Add `unset_current_user()` for unsetting the current user
         * New: Add `tearDown()` to ensure current user gets unset after each test
+    * New: Add unit tests for `show_metabox()`
     * Change: Add optional arg `$make_global` (defaulted to false) to `create_post_with_meta()` to facilitate making the created post global
     * Change: Restructure unit test file structure
         * Change: Move `phpunit/bin/` to `tests/bin/`

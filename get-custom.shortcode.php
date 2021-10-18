@@ -134,13 +134,25 @@ class c2c_GetCustomFieldValuesShortcode {
 	 * The metabox should only be shown in the classic editor.
 	 *
 	 * @since 005
+	 * @since 4.0 Prevent users who cannot publish posts from seeing the metabox.
 	 *
 	 * @return bool True if the metabox can be shown, false otherwise.
 	 */
 	public function show_metabox() {
 		$current_screen = get_current_screen();
+		$show = true;
 
-		return ! method_exists( $current_screen, 'is_block_editor' ) || ! $current_screen->is_block_editor();
+		// Show metabox if not the block editor.
+		if ( $show ) {
+			$show = ! method_exists( $current_screen, 'is_block_editor' ) || ! $current_screen->is_block_editor();
+		}
+
+		// Don't show if author cannot publish post.
+		if ( $show ) {
+			$show = $this->can_author_use_shortcodes();
+		}
+
+		return $show;
 	}
 
 	/**

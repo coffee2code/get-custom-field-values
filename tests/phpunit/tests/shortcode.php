@@ -314,4 +314,41 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( $admin2_id ) );
 	}
 
+	/*
+	 * show_metabox()
+	 */
+
+	public function test_show_metabox_when_not_in_block_editor() {
+		set_current_screen( 'post.php' );
+		$current_screen = get_current_screen();
+		$current_screen->is_block_editor = false;
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
+
+	public function test_show_metabox_when_in_block_editor() {
+		set_current_screen( 'post.php' );
+		$current_screen = get_current_screen();
+		$current_screen->is_block_editor = true;
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
+
+	public function test_show_metabox_when_author_cannot_publish_posts() {
+		$this->test_show_metabox_when_not_in_block_editor();
+
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$post1_id       = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
+
+	public function test_show_metabox_when_author_can_publish_posts() {
+		$this->test_show_metabox_when_not_in_block_editor();
+
+		$editor_id = $this->create_user( false, array( 'role' => 'editor' ) );
+		$post_id   = $this->create_post_with_meta( array(), array( 'post_author' => $editor_id ), true );
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
 }
