@@ -7,6 +7,10 @@
 * Unit tests:
     * Change: Split shortcode-related tests out into their own file
     * Change: Split widget-related tests out into their own file
+    * New: Add helper functions to facilitate creating users
+        * New: Add `create_user()` for creating a user and optionally making them the current user
+        * New: Add `unset_current_user()` for unsetting the current user
+        * New: Add `tearDown()` to ensure current user gets unset after each test
     * Change: Restructure unit test file structure
         * Change: Move `phpunit/bin/` to `tests/bin/`
         * Change: Move `phpunit/bootstrap.php` into `tests/phpunit/`

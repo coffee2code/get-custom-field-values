@@ -4,6 +4,11 @@ defined( 'ABSPATH' ) or die();
 
 class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 
+	public function tearDown() {
+		parent::tearDown();
+		$this->unset_current_user();
+	}
+
 	//
 	//
 	// HELPER FUNCTIONS
@@ -39,7 +44,23 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 			'tshirt size' => 'M',
 			'location' => 'Denver, CO',
 			'Website' => 'example.com',
+			'secret'  => 'abc',
 		);
+	}
+
+	private function create_user( $set_as_current = false, $user_args = array() ) {
+		$user_id = $this->factory->user->create( $user_args );
+		if ( $set_as_current ) {
+			wp_set_current_user( $user_id );
+		}
+		return $user_id;
+	}
+
+	// helper function, unsets current user globally. Taken from post.php test.
+	private function unset_current_user() {
+		global $current_user, $user_ID;
+
+		$current_user = $user_ID = null;
 	}
 
 
