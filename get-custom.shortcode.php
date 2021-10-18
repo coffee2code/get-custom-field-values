@@ -75,6 +75,60 @@ class c2c_GetCustomFieldValuesShortcode {
 	}
 
 	/**
+	 * Determines if post author can use shortcodes.
+	 *
+	 * @since 4.0
+	 *
+	 * @param null|int|WP_User $user The user ID, object, or null to refer to
+	 *                               current post's author. Default null.
+	 * @param null|int|WP_Post $post The post ID, object, or null to refer to
+	 *                               current post. Default null.
+	 * @return bool True if post author can use shortcode, else false.
+	 */
+	public function can_author_use_shortcodes( $user = null, $post = null ) {
+		// Default to allowing shortcode usage as shortcode may appear in non-post contexts.
+		// It is assumed those other contexts are trusted.
+		$can = true;
+
+		// If post not provided, use global post.
+		$post = get_post( $post );
+
+		// If user provided, get its object. Else, assume current post's author.
+		if ( $user ) {
+			if ( is_int( $user ) ) {
+				$user = get_userdata( (int) $user );
+			}
+		} else {
+			if ( $post ) {
+				$user = get_userdata( $post->post_author );
+			}
+		}
+
+		// User must have 'publish_posts' capability, which requires a user to
+		// be known.
+		if ( $user instanceof WP_User ) {
+			$can = user_can( $user->ID, 'publish_posts' );
+		}
+
+		/**
+		 * Filters if a given author (if applicable given the shortcode context),
+		 * can use the 'custom_field' shortcode, or to have their use of it
+		 * evaluated.
+		 *
+		 * Note: In contexts where no author is relevant (such as a shortcode
+		 * appearing in a sidebar widget), then use of the shortcode is
+		 * assumed to be allowed and trusted.
+		 *
+		 * @since 4.0
+		 *
+		 * @param bool          $can  Is shortcode use permitted?
+		 * @param WP_User|false $user User object, or false if no user in context.
+		 * @param WP_Post|false $post Post object, or false if no post in context.
+		 */
+		return apply_filters( 'get_custom_field_values/can_author_use_shortcodes', $can, $user, $post );
+	}
+
+	/**
 	 * Determines if the metabox should be shown.
 	 *
 	 * The metabox should only be shown in the classic editor.

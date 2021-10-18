@@ -227,4 +227,91 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 		$this->expectOutputRegex( '~' . preg_quote( $expected ) . '~', c2c_GetCustomFieldValuesShortcode::$instance->form() );
 	}
 
+	/*
+	 * can_author_use_shortcodes()
+	 */
+
+	public function test_can_author_use_shortcodes_no_args_uses_current_post() {
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$post1_id       = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes() );
+
+		$editor_id = $this->create_user( false, array( 'role' => 'editor' ) );
+		$post2_id  = $this->create_post_with_meta( array(), array( 'post_author' => $editor_id ), true );
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes() );
+	}
+
+	public function test_can_author_use_shortcodes_with_user() {
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( $contributor_id ) );
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( get_userdata( $contributor_id ) ) );
+
+		$editor_id = $this->create_user( false, array( 'role' => 'editor' ) );
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( $editor_id ) );
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( get_userdata( $editor_id ) ) );
+	}
+
+	public function test_can_author_use_shortcodes_with_post() {
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$post1_id = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( null, $post1_id ) );
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( null, get_post( $post1_id ) ) );
+
+		$editor_id = $this->create_user( false, array( 'role' => 'editor' ) );
+		$post2_id  = $this->create_post_with_meta( array(), array( 'post_author' => $editor_id ), true );
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( null, $post2_id ) );
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( null, get_post( $post2_id ) ) );
+	}
+
+	public function test_can_author_use_shortcodes_uses_user_if_it_and_post_are_provided() {
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$editor_id      = $this->create_user( false, array( 'role' => 'editor' ) );
+
+		$post1_id = $this->create_post_with_meta( array(), array( 'post_author' => $editor_id ), true );
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( $contributor_id, $post1_id ) );
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( get_userdata( $contributor_id ), $post1_id ) );
+
+		$post2_id = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( $editor_id, $post2_id ) );
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( get_userdata( $editor_id ), $post2_id ) );
+	}
+
+	/*
+	 * filter: get_custom_field_values/can_author_use_shortcodes
+	 */
+
+	public function test_filter_can_author_use_shortcodes() {
+		add_filter( 'get_custom_field_values/can_author_use_shortcodes', function( $can, $user, $post ) {
+			return true;
+		}, 10, 3 );
+
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$post1_id       = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes() );
+	}
+
+	public function test_filter_can_author_use_shortcodes_takes_into_account_user() {
+		add_filter( 'get_custom_field_values/can_author_use_shortcodes', function( $can, $user, $post ) {
+			if ( $user && 'testadmin' === $user->user_nicename ) {
+				$can = false;
+			}
+			return $can;
+		}, 10, 3 );
+
+		$admin1_id = $this->create_user( false, array( 'role' => 'administrator', 'user_nicename' => 'testadmin' ) );
+		$admin2_id = $this->create_user( false, array( 'role' => 'administrator', 'user_nicename' => 'anotheradmin' ) );
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( $admin1_id ) );
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( $admin2_id ) );
+	}
+
 }
