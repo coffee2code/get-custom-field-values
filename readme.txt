@@ -41,7 +41,7 @@ Links: [Plugin Homepage](https://coffee2code.com/wp-plugins/get-custom-field-val
 
 == Installation ==
 
-1. Install via the built-in WordPress plugin installer. Or download and unzip `get-custom-field-values.zip` inside the plugins directory for your site (typically `wp-content/plugins/`)
+1. Install via the built-in WordPress plugin installer. Or install the plugin code inside the plugins directory for your site (typically `/wp-content/plugins/`).
 2. (optional) Add filters for 'the_meta' to filter custom field data (see the end of the plugin file for commented out samples you may wish to include). And/or add per-meta filters by hooking 'the_meta_$field'
 3. Activate the plugin through the 'Plugins' admin menu in WordPress
 4. Give post(s) a custom field with a value.

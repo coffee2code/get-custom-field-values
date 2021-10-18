@@ -3,6 +3,7 @@
 ## _(in-progress)_
 * Change: Note compatibility through WP 5.8+
 * Change: Update copyright date (2021)
+* Change: Tweak installation instruction
 * Unit tests:
     * Change: Restructure unit test file structure
         * Change: Move `phpunit/bin/` to `tests/bin/`
