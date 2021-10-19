@@ -116,6 +116,8 @@ These are the hooks provided by the plugin:
 
 * `c2c_get_custom_field_values_shortcode`  : Filter to customize the name of the plugin's shortcode.
 * `c2c_get_custom_field_values_post_types` : Filter to customize the post types that should support the shortcode builder metabox.
+* `get_custom_field_values/can_author_use_shortcodes` : Filter to customize if post author can make use of the 'custom_field' shortcode.
+
 
 The shortcode provided is `[custom-field]`, which has a number of attributes to customize its behavior and output.
 
