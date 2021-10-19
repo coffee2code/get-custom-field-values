@@ -334,7 +334,7 @@ JS;
 		printf(
 			'<p class="submit"><input type="button" class="button-primary" onclick="return admin_%s.sendToEditor(this.form);" value="%s" /></p>' . "\n",
 			esc_attr( $this->name ),
-			esc_attr( __( 'Send shortcode to editor', 'get-custom-field-values' ) )
+			esc_attr__( 'Send shortcode to editor', 'get-custom-field-values' )
 		);
 	}
 
