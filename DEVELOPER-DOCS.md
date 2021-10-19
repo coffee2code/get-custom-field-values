@@ -113,9 +113,11 @@ Optional argument. Boolean ('true' or 'false') to indicate if password protected
 
 ## Shortcode
 
-This plugin provides one shortcode that can be used within the body of a post or page. The shortcode is accompanied by a shortcode builder (see Screenshots) that presents a form for easily creating a shortcode. However, here's the documentation for the shortcode and its supported attributes.
+This plugin provides one shortcode that can be used within the body of a post or page. The shortcode is accompanied by a shortcode builder (see Screenshots) that presents a form for easily creating a shortcode. Here's the documentation for the shortcode and its supported attributes.
 
 The name of the shortcode can be changed via the filter `c2c_get_custom_field_values_shortcode` (though making this customization is only recommended for before your first use of the shortcode, since changing to a new name will cause the shortcodes previously defined using the older name to no longer work).
+
+Note: this plugin's shortcode is only available for use within posts to authors with the 'publish_posts' capability (such as editors and administrators). For authors without that capability (such as contributors), the shortcode builder is not available and any instances of the shortcode in the post are ignored.
 
 ### `custom_field`
 

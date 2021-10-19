@@ -227,6 +227,51 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 		$this->expectOutputRegex( '~' . preg_quote( $expected ) . '~', c2c_GetCustomFieldValuesShortcode::$instance->form() );
 	}
 
+	public function test_shortcode_with_contributor_as_author_does_not_work_in_post_context() {
+		$privileged_post_id  = $this->create_post_with_meta();
+		$contributor_id      = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$contributor_post_id = $this->create_post_with_meta( array(), array(
+			'post_author' => $contributor_id,
+			'post_content' => '[custom_field field="secret" post_id="' . $privileged_post_id . '"]',
+		), true );
+
+		$this->assertEmpty( trim( apply_filters( 'the_content', get_the_content() ) ) );
+	}
+
+	public function test_shortcode_with_contributor_as_author_does_not_work_in_post_context_for_administrator() {
+		$privileged_post_id  = $this->create_post_with_meta();
+		$contributor_id      = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$contributor_post_id = $this->create_post_with_meta( array(), array(
+			'post_author'  => $contributor_id,
+			'post_content' => '[custom_field field="secret" post_id="' . $privileged_post_id . '"]',
+		), true );
+		$administrator_id    = $this->create_user( true, array( 'role' => 'administrator' ) );
+
+		$this->assertEmpty( trim( apply_filters( 'the_content', get_the_content() ) ) );
+	}
+
+	public function test_shortcode_outside_post_context_of_post_with_contributor_as_author_works() {
+		$privileged_post_id  = $this->create_post_with_meta();
+		$contributor_id      = $this->create_user( true, array( 'role' => 'contributor' ) );
+		$contributor_post_id = $this->create_post_with_meta( array(), array(
+			'post_author' => $contributor_id,
+			'post_content' => '[custom_field field="secret" post_id="' . $privileged_post_id . '"]',
+		), true );
+
+		$this->assertEquals( '', do_shortcode( '[custom_field field="secret" post_id="' . $privileged_post_id . '"]' ) );
+	}
+
+	public function test_shortcode_with_editor_as_author_works() {
+		$privileged_post_id = $this->create_post_with_meta();
+		$editor_id          = $this->create_user( false, array( 'role' => 'editor' ) );
+		$editor_post_id     = $this->create_post_with_meta( array(), array(
+			'post_author' => $editor_id,
+			'post_content' => '[custom_field field="secret" post_id="' . $privileged_post_id . '"]',
+		), true );
+
+		$this->assertEquals( 'abc', trim( apply_filters( 'the_content', get_the_content() ) ) );
+	}
+
 	/*
 	 * can_author_use_shortcodes()
 	 */

@@ -199,12 +199,18 @@ class c2c_GetCustomFieldValuesShortcode {
 	/**
 	 * Shortcode handler.
 	 *
+	 * @since 4.0 Prevent evaluation of shortcodes in posts author by users who cannot publish posts.
+	 *
 	 * @param array  $atts    The shortcode attributes
 	 * @param string $content The text wrapped by the shortcode's opening and closing tags.
 	 * @return string
 	 */
 	public function shortcode( $atts, $content = null ) {
 		$defaults = array();
+
+		if ( ! $this->can_author_use_shortcodes() ) {
+			return '';
+		}
 
 		foreach ( $this->widget_handler->get_config() as $opt => $values ) {
 			// Unlike widgets, shortcodes generally exist in the context of a post, so
