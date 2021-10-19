@@ -195,6 +195,12 @@ The `get_custom_field_values/can_author_use_shortcodes` filter allows you to ove
 * `$can` _(boolean)_ :
 Whether or not the post author can use the 'custom_field' shortcode, as determined by `can_author_use_shortcodes()`.
 
+* `$user` _(WP\_User|false)_ :
+The user.
+
+* `$post` _(WP\_Post|false)_ :
+The post
+
 #### Example:
 
 ```php
