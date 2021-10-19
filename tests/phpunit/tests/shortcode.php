@@ -359,6 +359,17 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes( $admin2_id ) );
 	}
 
+	public function test_filter_can_author_use_shortcodes_gets_cast_to_bool() {
+		add_filter( 'get_custom_field_values/can_author_use_shortcodes', function( $can, $user, $post ) {
+			return 5;
+		}, 10, 3 );
+
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$post1_id       = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertTrue( true === c2c_GetCustomFieldValuesShortcode::$instance->can_author_use_shortcodes() );
+	}
+
 	/*
 	 * show_metabox()
 	 */

@@ -125,7 +125,7 @@ class c2c_GetCustomFieldValuesShortcode {
 		 * @param WP_User|false $user User object, or false if no user in context.
 		 * @param WP_Post|false $post Post object, or false if no post in context.
 		 */
-		return apply_filters( 'get_custom_field_values/can_author_use_shortcodes', $can, $user, $post );
+		return (bool) apply_filters( 'get_custom_field_values/can_author_use_shortcodes', $can, $user, $post );
 	}
 
 	/**
