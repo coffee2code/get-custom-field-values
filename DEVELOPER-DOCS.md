@@ -201,3 +201,21 @@ Whether or not the post author can use the 'custom_field' shortcode, as determin
 // Allow authors, regardless of capabilities, to use the 'custom_field' shortcode.
 add_filter( 'get_custom_field_values/can_author_use_shortcodes', '__return_true' );
 ```
+
+### `get_custom_field_values/show_metabox` _(filter)_
+
+The `get_custom_field_values/show_metabox` filter allows you to customize if the shortcode builder metabox is shown when an author is creating or editing a post. More precisely, this controls if the metabox is created in the first place. It does **not** control the default visibility state of the metabox, which if the metabox is available then it is shown by default. To control the visibility, each user must use the Screen Options tab -- see the FAQ question "I don't plan on using the shortcode builder when writing or editing a post or page, so how do I get rid of it?" for more info).
+
+Note: Use of this filter cannot override the fact that the metabox is not available within the block editor.
+
+#### Arguments:
+
+* `$show` _(filter)_ :
+Whether the shortcode builder metabox should be shown when an author is creating or editing a post. By default, this is primarily dependent on whether the author has the 'publish_posts' capability or not.
+
+#### Example:
+
+```php
+// Completely disable the shortcode builder metabox for Get Custom Field Values plugin.
+add_filter( 'get_custom_field_values/show_metabox', '__return_false' );
+```

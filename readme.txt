@@ -74,6 +74,8 @@ If you use the block editor (aka Gutenberg, which is the default editing experie
 
 For the classic editor, when on the write or edit admin pages for a page or post, find the "Screen Options" link near the upper right-hand corner of the page. Clicking it slides down a panel of options. In the "Show on screen" section, uncheck the checkbox labeled "Get Custom Field Values - Shortcode". This must be done separately for posts and for pages if you want the shortcode builder disabled for both sections.
 
+Programmatically, see the developer documentation for the `get_custom_field_values/show_metabox` filter for how to completely (or selectively) disable the shortcode builder.
+
 = I don't see the shortcode builder; where is it? =
 
 If you use the block editor (aka Gutenberg, which is the default editing experience as of WordPress 5.0), then the shortcode builder is not available yet.
@@ -117,6 +119,7 @@ These are the hooks provided by the plugin:
 * `c2c_get_custom_field_values_shortcode`  : Filter to customize the name of the plugin's shortcode.
 * `c2c_get_custom_field_values_post_types` : Filter to customize the post types that should support the shortcode builder metabox.
 * `get_custom_field_values/can_author_use_shortcodes` : Filter to customize if post author can make use of the 'custom_field' shortcode.
+* `get_custom_field_values/show_metabox`   : Filter to customize if the shortcode builder metabox is shown.
 
 
 The shortcode provided is `[custom-field]`, which has a number of attributes to customize its behavior and output.

@@ -7,6 +7,7 @@
     * New: Add filter `'get_custom_field_values/can_author_use_shortcodes'`
     * Change: Prevent shortcodes created by users who cannot publish posts from being evaulated
     * Change: Prevent display of shortcode builder metabox to users who cannot publish posts
+* New: Add filter `'get_custom_field_values/show_metabox'` to customize if shortcode builder metabox is shown
 * New: Add DEVELOPER-DOCS.md and move template tag and shortcode documentation into it
 * Change: Note compatibility through WP 5.8+
 * Change: Update copyright date (2021)

@@ -149,7 +149,7 @@ class c2c_GetCustomFieldValuesShortcode {
 
 		// Don't show if author cannot publish post.
 		if ( $show ) {
-			$show = $this->can_author_use_shortcodes();
+			$show = (bool) apply_filters( 'get_custom_field_values/show_metabox', $this->can_author_use_shortcodes() );
 		}
 
 		return $show;

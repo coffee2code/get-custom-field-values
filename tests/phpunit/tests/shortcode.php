@@ -407,4 +407,52 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 
 		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
 	}
+
+	/*
+	 * filter: get_custom_field_values/show_metabox
+	 */
+
+	public function test_filter_show_metabox() {
+		add_filter( 'get_custom_field_values/show_metabox', function( $show ) {
+			return true;
+		} );
+
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$post1_id       = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
+
+	public function test_filter_show_metabox_takes_into_account_user() {
+		add_filter( 'get_custom_field_values/show_metabox', function( $show ) {
+			global $post;
+			$user = get_userdata( $post->post_author );
+			if ( $user && 'testadmin' === $user->user_nicename ) {
+				$show = false;
+			}
+			return $show;
+		} );
+
+		$admin1_id = $this->create_user( false, array( 'role' => 'administrator', 'user_nicename' => 'testadmin' ) );
+		$post1_id  = $this->create_post_with_meta( array(), array( 'post_author' => $admin1_id ), true );
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+
+		$admin2_id = $this->create_user( false, array( 'role' => 'administrator', 'user_nicename' => 'anotheradmin' ) );
+		$post2_id  = $this->create_post_with_meta( array(), array( 'post_author' => $admin2_id ), true );
+
+		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
+
+	public function test_filter_show_metabox_gets_cast_to_bool() {
+		add_filter( 'get_custom_field_values/show_metabox', function( $show ) {
+			return 5;
+		} );
+
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$post1_id       = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertTrue( true === c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
+
 }
