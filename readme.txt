@@ -42,12 +42,12 @@ Links: [Plugin Homepage](https://coffee2code.com/wp-plugins/get-custom-field-val
 == Installation ==
 
 1. Install via the built-in WordPress plugin installer. Or install the plugin code inside the plugins directory for your site (typically `/wp-content/plugins/`).
-2. (optional) Add filters for 'the_meta' to filter custom field data (see the end of the plugin file for commented out samples you may wish to include). And/or add per-meta filters by hooking 'the_meta_$field'
+2. Optional: Add filters for 'the_meta' to filter custom field data (see the end of the plugin file for commented out samples you may wish to include). And/or add per-meta filters by hooking 'the_meta_$field'
 3. Activate the plugin through the 'Plugins' admin menu in WordPress
 4. Give post(s) a custom field with a value.
-5. (optional) Go to the Appearance -> Widgets admin page to create one or more 'Get Custom Field' sidebar widgets for your widget-enabled theme.
-6. (optional) Use one of the six template functions provided by this plugin to retrieve the contents of custom fields. You must 'echo' the result if you wish to display the value on your site.
-
+5. Optional: Go to the Appearance -> Widgets admin page to create one or more 'Get Custom Field' sidebar widgets for your widget-enabled theme.
+6. Optional: Use one of the six template functions provided by this plugin to retrieve the contents of custom fields. You must 'echo' the result if you wish to display the value on your site.
+7. Optional: Use the provided shortcode within posts or wherever shortcodes are supported.
 
 == Frequently Asked Questions ==
 
