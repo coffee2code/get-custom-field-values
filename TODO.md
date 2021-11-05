@@ -27,5 +27,14 @@ The following list comprises ideas, suggestions, and known issues, all of which 
 * Move shortcode wizard JS into file so it can be enqueued
 * Handle serialized custom field values
 * Gutenberg: Adapt shortcode widget to block editor. Wizard should permit adding custom fields inline or as blocks.
+* Discontinue use of jQuery in favor of vanilla JS
+* Add CLI support for more post meta commands. (Or as new plugin, Post Meta CLI?)
+* Disable use of shortcode in comments, even if shortcodes in comments are enabled (which they aren't, but if a site went out of its way to allow shortcodes in comments, they may not anticipate the potential for information disclosure by allowing use of this particular shortcode)
+    * Require separate filter to enable
+* Add function invocation action hooks
+* Shortcode: Allow authors who cannot publish posts to use shortcode to reference post meta in the post the shortcode appears in
+    * Ideally, also any of their other posts
+    * Also ideally, post meta publicly exposed and available via REST API
+* Shortcode: Add filter `'get_custom_field_values/allow_shortcode_usage'` in `shortcode()`, that passes result of `can_author_use_shortcodes()` as first arg, but also all info about shortcode usage. Allows for fine-grained determination if a specific shortcode use is allowed/disallowed.
 
 Feel free to make your own suggestions or champion for something already on the list (via the [plugin's support forum on WordPress.org](https://wordpress.org/support/plugin/get-custom-field-values/) or on [GitHub](https://github.com/coffee2code/get-custom-field-values/) as an issue or PR).
