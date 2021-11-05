@@ -1,8 +1,8 @@
 # ChangeLog
 
 ## _(in-progress)_
-* Change: Prevent lower-privileged users from using shortcodes. Props Francesco Carlucci.
-    * Prevents potential information disclosure due to accessing post meta in posts authored by higher-privileged users
+* Change: Prevent users who can't publish posts from using the shortcode in posts. Props Francesco Carlucci.
+    * Hardens security to prevent potentail information disclosure or XSS by authors with limited privileges
     * New: Add shortcode class function `can_author_use_shortcodes()`
     * New: Add filter `'get_custom_field_values/can_author_use_shortcodes'`
     * Change: Prevent shortcodes created by users who cannot publish posts from being evaulated
