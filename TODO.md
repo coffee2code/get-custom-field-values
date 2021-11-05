@@ -38,5 +38,8 @@ The following list comprises ideas, suggestions, and known issues, all of which 
 * Shortcode: Add filter `'get_custom_field_values/allow_shortcode_usage'` in `shortcode()`, that passes result of `can_author_use_shortcodes()` as first arg, but also all info about shortcode usage. Allows for fine-grained determination if a specific shortcode use is allowed/disallowed.
 * Abandon separate versioning of shortcode and widget classes
     * Update `@since` values for each class to corresponding plugin versions
+* Document the `the_meta*` filters (inline and in dev docs)
+* Deprecate and rename the `the_meta*` filters? (to `get_custom_field_values/the_meta`)
+* Wrap all non-template tag functions into a class
 
 Feel free to make your own suggestions or champion for something already on the list (via the [plugin's support forum on WordPress.org](https://wordpress.org/support/plugin/get-custom-field-values/) or on [GitHub](https://github.com/coffee2code/get-custom-field-values/) as an issue or PR).

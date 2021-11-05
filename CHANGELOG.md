@@ -2,6 +2,7 @@
 
 ## _(in-progress)_
 * Change: Further restrict usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
+* New: Add a few more possible TODO items
 
 ## 4.0 _(2021-11-04)_
 
