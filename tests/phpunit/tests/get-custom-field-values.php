@@ -355,15 +355,13 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 
 		$random_1 = c2c_get_random_custom( 'color' );
 
-		// Obtain a random color, but retry up to 5 times if the same color
-		// gets chosen.
+		// Obtain a random color, but retry up to 5 times if same color gets chosen.
 		$i = 0;
 		do {
 			$random_2 = c2c_get_random_custom( 'color' );
-			$i++;
-		} while ( $i < 5 && $random_1 === $random_2 );
+		} while ( $i++ < 6 && $random_1 === $random_2 );
 
-		$this->assertFalse( $random_1 === $random_2 ); // Might fail in the highly unlinkely but possible case the same item was randomly selected 6 times in a row
+		$this->assertNotEquals( $random_1, $random_2 ); // Might fail in the highly unlinkely but possible case the same item was randomly selected 6 times in a row
 		$this->assertContains( $random_1, $colors );
 		$this->assertContains( $random_2, $colors );
 	}
@@ -387,9 +385,14 @@ class Get_Custom_Field_Values_Test extends WP_UnitTestCase {
 		$post_id = $this->create_post_with_meta();
 
 		$random_1 = c2c_get_random_post_custom( $post_id, 'child', 2, 'Children: ', '.', 'none', ' and ' );
-		$random_2 = c2c_get_random_post_custom( $post_id, 'child', 2, 'Children: ', '.', 'none', ' and ' );
 
-		$this->assertNotEquals( $random_1, $random_2 ); // It's possible the same item was randomly selected back-to-back
+		// Obtain a random child, but retry up to 5 times if same child gets chosen.
+		$i = 0;
+		do {
+			$random_2 = c2c_get_random_post_custom( $post_id, 'child', 2, 'Children: ', '.', 'none', ' and ' );
+		} while ( $i++ < 6 && $random_1 === $random_2 );
+
+		$this->assertNotEquals( $random_1, $random_2 ); // Might fail in the highly unlinkely but possible case the same item was randomly selected 6 times in a row
 		$this->assertRegExp( '/^Children: (adam|bob|cerise|diane) and (adam|bob|cerise|diane)\.$/', $random_1 );
 		$this->assertRegExp( '/^Children: (adam|bob|cerise|diane) and (adam|bob|cerise|diane)\.$/', $random_2 );
 	}

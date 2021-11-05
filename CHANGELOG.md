@@ -20,7 +20,7 @@
         * New: Add `unset_current_user()` for unsetting the current user
         * New: Add `tearDown()` to ensure current user gets unset after each test
     * New: Add unit tests for `show_metabox()`
-    * Change: Reduce likelihood of `test_c2c_get_random_custom_crosses_posts()` failing due to reasonable possibility of randomization choosing the same item
+    * Change: Reduce likelihood of particular randomization tests from failing due to reasonable possibility of subsequent randomization choosing the same item
     * Change: Add optional arg `$make_global` (defaulted to false) to `create_post_with_meta()` to facilitate making the created post global
     * Change: Restructure unit test file structure
         * Change: Move `phpunit/bin/` to `tests/bin/`
