@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 5.8
-Stable tag: 3.9.4
+Stable tag: 4.0
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -127,6 +127,43 @@ The shortcode provided is `[custom-field]`, which has a number of attributes to 
 
 == Changelog ==
 
+= 4.0 (2021-11-04) =
+Highlights:
+
+This recommended release prevents users who can't publish posts from using the shortcode in posts (security hardening), adds some new filters, adds DEVELOPER-DOCS.md, notes compatibility through WP 5.8+, and reorganizes and improves unit tests.
+
+Details:
+
+* Change: Prevent users who can't publish posts from using the shortcode in posts. Props Francesco Carlucci.
+    * Hardens security to prevent potentail information disclosure or XSS by authors with limited privileges
+    * New: Add shortcode class function `can_author_use_shortcodes()`
+    * New: Add filter `'get_custom_field_values/can_author_use_shortcodes'`
+    * Change: Prevent shortcodes created by users who cannot publish posts from being evaulated
+    * Change: Prevent display of shortcode builder metabox to users who cannot publish posts
+* New: Add filter `'get_custom_field_values/show_metabox'` to customize if shortcode builder metabox is shown
+* New: Add DEVELOPER-DOCS.md and move template tag and shortcode documentation into it
+* Change: Note compatibility through WP 5.8+
+* Change: Update copyright date (2021)
+* Change: Tweak installation instruction
+* Unit tests:
+    * Change: Split shortcode-related tests out into their own file
+    * Change: Split widget-related tests out into their own file
+    * New: Add helper functions to facilitate creating users
+        * New: Add `create_user()` for creating a user and optionally making them the current user
+        * New: Add `unset_current_user()` for unsetting the current user
+        * New: Add `tearDown()` to ensure current user gets unset after each test
+    * New: Add unit tests for `show_metabox()`
+    * Change: Reduce likelihood of particular randomization tests from failing due to reasonable possibility of subsequent randomization choosing the same item
+    * Change: Add optional arg `$make_global` (defaulted to false) to `create_post_with_meta()` to facilitate making the created post global
+    * Change: Restructure unit test file structure
+        * Change: Move `phpunit/bin/` to `tests/bin/`
+        * Change: Move `phpunit/bootstrap.php` into `tests/phpunit/`
+        * Change: Move tests from `phpunit/tests/` to `tests/phpunit/tests/`
+        * Change: In bootstrap, store path to plugin file constant so its value can be used within that file and in test file
+        * Change: In bootstrap, check for test installation in more places and exit with error message if not found
+        * Change: Remove 'test-' prefix from unit test files
+* New: Add a few more possible TODO items
+
 = 3.9.4 (2020-09-11) =
 * Change: Restructure unit test file structure
     * New: Create new subdirectory `phpunit/` to house all files related to unit testing
@@ -148,17 +185,13 @@ The shortcode provided is `[custom-field]`, which has a number of attributes to 
 * Change: Update links to coffee2code.com to be HTTPS
 * Change: Fix typo in FAQ
 
-= 3.9.2 (2019-12-08) =
-* Change: Note compatibility through WP 5.3+
-* Change: Unit test: Update unit test install script and bootstrap to use latest WP unit test repo
-* Change: Use full URL for readme.txt link to full changelog
-* Change: Add link to plugin's page in Plugin Directory to README.md
-* Change: Update copyright date (2020)
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/get-custom-field-values/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 4.0 =
+Recommended update: Prevented users who can't publish posts from using the shortcode in posts (security hardening), added some new filters, added DEVELOPER-DOCS.md, noted compatibility through WP 5.8+, and reorganized and improved unit tests.
 
 = 3.9.4 =
 Trivial update: Restructured unit test file structure and noted compatibility through WP 5.5+.

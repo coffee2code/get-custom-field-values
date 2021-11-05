@@ -1,6 +1,13 @@
 # ChangeLog
 
-## _(in-progress)_
+## 4.0 _(2021-11-04)_
+
+### Highlights:
+
+This recommended release prevents users who can't publish posts from using the shortcode in posts (security hardening), adds some new filters, adds DEVELOPER-DOCS.md, notes compatibility through WP 5.8+, and reorganizes and improves unit tests.
+
+### Details:
+
 * Change: Prevent users who can't publish posts from using the shortcode in posts. Props Francesco Carlucci.
     * Hardens security to prevent potentail information disclosure or XSS by authors with limited privileges
     * New: Add shortcode class function `can_author_use_shortcodes()`
