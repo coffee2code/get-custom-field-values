@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 5.8
-Stable tag: 4.0
+Stable tag: 4.0.1
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -127,6 +127,10 @@ The shortcode provided is `[custom-field]`, which has a number of attributes to 
 
 == Changelog ==
 
+= 4.0.1 (2021-11-05) =
+* Change: Further restrict usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
+* New: Add a few more possible TODO items
+
 = 4.0 (2021-11-04) =
 Highlights:
 
@@ -189,6 +193,9 @@ _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/ge
 
 
 == Upgrade Notice ==
+
+= 4.0.1 =
+Security hardening release: Further restricted usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
 
 = 4.0 =
 Recommended update: Prevented users who can't publish posts from using the shortcode in posts (security hardening), added some new filters, added DEVELOPER-DOCS.md, noted compatibility through WP 5.8+, and reorganized and improved unit tests.

@@ -1,6 +1,6 @@
 # ChangeLog
 
-## _(in-progress)_
+## 4.0.1 _(2021-11-05)_
 * Change: Further restrict usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
 * New: Add a few more possible TODO items
 
