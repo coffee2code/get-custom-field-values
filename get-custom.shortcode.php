@@ -104,10 +104,10 @@ class c2c_GetCustomFieldValuesShortcode {
 			}
 		}
 
-		// User must have 'publish_posts' capability, which requires a user to
+		// User must have 'unfiltered_html' capability, which requires a user to
 		// be known.
 		if ( $user instanceof WP_User ) {
-			$can = user_can( $user->ID, 'publish_posts' );
+			$can = user_can( $user->ID, 'unfiltered_html' );
 		}
 
 		/**

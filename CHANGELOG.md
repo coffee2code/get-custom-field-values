@@ -1,5 +1,8 @@
 # ChangeLog
 
+## _(in-progress)_
+* Change: Further restrict usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
+
 ## 4.0 _(2021-11-04)_
 
 ### Highlights:

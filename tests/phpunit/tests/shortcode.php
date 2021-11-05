@@ -238,6 +238,17 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 		$this->assertEmpty( trim( apply_filters( 'the_content', get_the_content() ) ) );
 	}
 
+	public function test_shortcode_with_author_as_author_does_not_work_in_post_context() {
+		$privileged_post_id  = $this->create_post_with_meta();
+		$author_id           = $this->create_user( false, array( 'role' => 'author' ) );
+		$author_post_id      = $this->create_post_with_meta( array(), array(
+			'post_author' => $author_id,
+			'post_content' => '[custom_field field="secret" post_id="' . $privileged_post_id . '"]',
+		), true );
+
+		$this->assertEmpty( trim( apply_filters( 'the_content', get_the_content() ) ) );
+	}
+
 	public function test_shortcode_with_contributor_as_author_does_not_work_in_post_context_for_administrator() {
 		$privileged_post_id  = $this->create_post_with_meta();
 		$contributor_id      = $this->create_user( false, array( 'role' => 'contributor' ) );

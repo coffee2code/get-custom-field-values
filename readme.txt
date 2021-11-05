@@ -80,7 +80,7 @@ Programmatically, see the developer documentation for the `get_custom_field_valu
 
 If you use the block editor (aka Gutenberg, which is the default editing experience as of WordPress 5.0), then the shortcode builder is not available yet.
 
-If you don't have the 'publish_posts' capability (e.g. your role on the site is 'contributor'), then the shortcode builder is not available to you (since this plugin's shortcode is not usable by you).
+If you aren't able to include scripts in your posts (i.e. you don't have the 'unfiltered_html' capability), then the shortcode builder is not available to you. Only those with the editor or administrator role (except on Multisite) or the super administrator role can make use of this plugin's shortcode.
 
 For the classic editor, the shortcode builder/wizard is available in the admin when writing or editing a page or post. On the edit/create page, it'll be a sidebar widget (in this context, also known as a metabox) labeled "Get Custom Field Values - Shortcode". If you don't see it there (which may be the case since it is hidden by default), find the "Screen Options" link near the upper righthand corner of the page. Clicking it slides down a panel of options. In the "Show on screen" section, check the checkbox labeled "Get Custom Field Values - Shortcode". This must be done separately for posts and for pages if you want the shortcode builder enabled for both sections.
 

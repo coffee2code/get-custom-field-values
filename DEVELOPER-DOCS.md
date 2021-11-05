@@ -117,7 +117,7 @@ This plugin provides one shortcode that can be used within the body of a post or
 
 The name of the shortcode can be changed via the filter `c2c_get_custom_field_values_shortcode` (though making this customization is only recommended for before your first use of the shortcode, since changing to a new name will cause the shortcodes previously defined using the older name to no longer work).
 
-Note: this plugin's shortcode is only available for use within posts to authors with the 'publish_posts' capability (such as editors and administrators). For authors without that capability (such as contributors), the shortcode builder is not available and any instances of the shortcode in the post are ignored. See documentation for the `get_custom_field_values/can_author_use_shortcodes` to customize this behavior.
+Note: this plugin's shortcode is only available for use by authors with the ability to post scripts (aka the 'unfiltered_html' capability), such as those with the editor or administrator role (except on Multisite) or the super administrator role. For authors without that capability (such as contributors and authors), the shortcode builder is not available and any instances of the shortcode in the post are ignored. See documentation for the `get_custom_field_values/can_author_use_shortcodes` to customize this behavior.
 
 ### `custom_field`
 
@@ -188,7 +188,7 @@ add_filter( 'c2c_get_custom_field_values_post_types', function( $post_types ) { 
 
 ### `get_custom_field_values/can_author_use_shortcodes` _(filter)_
 
-The `get_custom_field_values/can_author_use_shortcodes` filter allows you to override whether a post author is able to use shortcodes. By default, the plugin's shortcode is not available for use by authors without the 'publish_posts' capability (such as those with the contributor role). The limitation exists to prevent potential disclosure of potentially private information stored in post meta in posts authored by other users.
+The `get_custom_field_values/can_author_use_shortcodes` filter allows you to override whether a post author is able to use shortcodes. By default, the plugin's shortcode is only available for use by authors with the ability to post scripts (aka the 'unfiltered_html' capability), such as those with the editor or administrator role (except on Multisite) or the super administrator role. The limitation exists to prevent potential disclosure of potentially private information stored in post meta in posts authored by other users.
 
 #### Arguments:
 
@@ -217,7 +217,7 @@ Note: Use of this filter cannot override the fact that the metabox is not availa
 #### Arguments:
 
 * `$show` _(filter)_ :
-Whether the shortcode builder metabox should be shown when an author is creating or editing a post. By default, this is primarily dependent on whether the author has the 'publish_posts' capability or not.
+Whether the shortcode builder metabox should be shown when an author is creating or editing a post. By default, this is primarily dependent on whether the author has the 'unfiltered_html' capability or not.
 
 #### Example:
 
