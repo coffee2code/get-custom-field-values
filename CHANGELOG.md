@@ -7,6 +7,7 @@
 * Change: Clarify references to shortcode-related hook in `DEVELOPER-DOCS.md`
 * Change: Note compatibility through WP 6.3+
 * Change: Update copyright date (2023)
+* New: Add `.gitignore` file
 
 ## 4.0.1 _(2021-11-05)_
 * Change: Further restrict usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
