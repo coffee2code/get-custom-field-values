@@ -123,7 +123,7 @@ Note: this plugin's shortcode is only available for use by authors with the abil
 
 The only shortcode provided by this plugin is named `custom_field`. It is a self-closing tag, meaning that it is not meant to encapsulate text. Except for 'field', all attributes are optional, though you'll likely need to provide a couple to achieve your desired result.
 
-#### Attributes:
+#### Attributes
 
 * **field**       : _(string)_ The name of the custom field key whose value you wish to have displayed.
 * **id**          : _(string)_ The text to use as the 'id' attribute for a 'span' tag that wraps the output
@@ -138,7 +138,7 @@ The only shortcode provided by this plugin is named `custom_field`. It is a self
 * **between**     : _(string)_ Text to display between custom field items if more than one are being shown. Default is ', '.
 * **before_last** : _(string)_ Text to display between the second to last and last custom field items if more than one are being shown.
 
-#### Examples:
+#### Examples
 
 * Get list of sizes for the current post
 `[custom_field field="size" limit="0" between=", " this_post="1" /]`
@@ -158,12 +158,12 @@ The plugin exposes a number of filters for hooking. Code using these filters sho
 
 The `c2c_get_custom_field_values_shortcode` filter allows you to customize the name of the shortcode.
 
-#### Arguments:
+#### Arguments
 
 * `$name` _(string)_ :
 The name for the shortcode to be handled by this plugin. Default is 'custom_field'. If you opt to change this, you should do so prior to first use of the plugin's shortcode. Once changed, the plugin will no longer recognize any pre-existing shortcodes using the default name.
 
-#### Example:
+#### Example
 
 ```php
 // Change the Get Custom Field Values shortcode to 'cf' so it is shorter.
@@ -174,12 +174,12 @@ add_filter( 'c2c_get_custom_field_values_shortcode', function( $name ) { return 
 
 The `c2c_get_custom_field_values_post_types` filter allows you to customize the list of post types for which the shortcode builder (Classic Editor only) will appear. By default, all post types are supported.
 
-#### Arguments:
+#### Arguments
 
 * `$post_type` _(string[])_ :
 The list of post types supported, by name. By default, all public post types are supported.
 
-#### Example:
+#### Example
 
 ```php
 // Only show Get Custom Field Vavlues shortcode builder for posts.
@@ -190,7 +190,7 @@ add_filter( 'c2c_get_custom_field_values_post_types', function( $post_types ) { 
 
 The `get_custom_field_values/can_author_use_shortcodes` filter allows you to override whether a post author is able to use shortcodes. By default, the plugin's shortcode is only available for use by authors with the ability to post scripts (aka the 'unfiltered_html' capability), such as those with the editor or administrator role (except on Multisite) or the super administrator role. The limitation exists to prevent potential disclosure of potentially private information stored in post meta in posts authored by other users.
 
-#### Arguments:
+#### Arguments
 
 * `$can` _(boolean)_ :
 Whether or not the post author can use the 'custom_field' shortcode, as determined by `can_author_use_shortcodes()`.
@@ -201,7 +201,7 @@ The user.
 * `$post` _(WP\_Post|false)_ :
 The post
 
-#### Example:
+#### Example
 
 ```php
 // Allow authors, regardless of capabilities, to use the 'custom_field' shortcode.
@@ -214,12 +214,12 @@ The `get_custom_field_values/show_metabox` filter allows you to customize if the
 
 Note: Use of this filter cannot override the fact that the metabox is not available within the block editor.
 
-#### Arguments:
+#### Arguments
 
 * `$show` _(filter)_ :
 Whether the shortcode builder metabox should be shown when an author is creating or editing a post. By default, this is primarily dependent on whether the author has the 'unfiltered_html' capability or not.
 
-#### Example:
+#### Example
 
 ```php
 // Completely disable the shortcode builder metabox for Get Custom Field Values plugin.
