@@ -1,6 +1,7 @@
 # ChangeLog
 
 ## _(in-progress)_
+* Change: Note compatibility through WP 6.3+
 * Change: Update copyright date (2023)
 
 ## 4.0.1 _(2021-11-05)_

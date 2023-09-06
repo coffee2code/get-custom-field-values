@@ -5,7 +5,7 @@ Tags: custom fields, widget, widgets, shortcode, meta, extra, data, post, posts,
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
-Tested up to: 5.8
+Tested up to: 6.3
 Stable tag: 4.0.1
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
