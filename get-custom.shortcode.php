@@ -149,6 +149,13 @@ class c2c_GetCustomFieldValuesShortcode {
 
 		// Don't show if author cannot publish post.
 		if ( $show ) {
+			/**
+			 * Filters if the shortcode builder metabox is shown.
+			 *
+			 * @ssince 4.0
+			 *
+			 * @param bool $show Show the metabox? Default is whether the post author can publish unfiltered HTML.
+			 */
 			$show = (bool) apply_filters( 'get_custom_field_values/show_metabox', $this->can_author_use_shortcodes() );
 		}
 

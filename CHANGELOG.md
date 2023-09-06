@@ -1,6 +1,7 @@
 # ChangeLog
 
 ## _(in-progress)_
+* Change: Add inline documentions for shortcode-related hooks
 * Change: Note compatibility through WP 6.3+
 * Change: Update copyright date (2023)
 
