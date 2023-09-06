@@ -113,7 +113,7 @@ Optional argument. Boolean ('true' or 'false') to indicate if password protected
 
 ## Shortcode
 
-This plugin provides one shortcode that can be used within the body of a post or page. The shortcode is accompanied by a shortcode builder (see Screenshots) that presents a form for easily creating a shortcode. Here's the documentation for the shortcode and its supported attributes.
+This plugin provides one shortcode that can be used within the body of a post or page and wherever else shortcodes are supported. For users with the appropriate capabilities, the shortcode is accompanied by a shortcode builder (see Screenshots) that presents a form for easily creating a shortcode. Here's the documentation for the shortcode and its supported attributes.
 
 The name of the shortcode can be changed via the filter `c2c_get_custom_field_values_shortcode` (though making this customization is only recommended for before your first use of the shortcode, since changing to a new name will cause the shortcodes previously defined using the older name to no longer work).
 
@@ -188,7 +188,7 @@ add_filter( 'c2c_get_custom_field_values_post_types', function( $post_types ) { 
 
 ### `get_custom_field_values/can_author_use_shortcodes` _(filter)_
 
-The `get_custom_field_values/can_author_use_shortcodes` filter allows you to override whether a post author is able to use shortcodes. By default, the plugin's shortcode is only available for use by authors with the ability to post scripts (aka the 'unfiltered_html' capability), such as those with the editor or administrator role (except on Multisite) or the super administrator role. The limitation exists to prevent potential disclosure of potentially private information stored in post meta in posts authored by other users.
+The `get_custom_field_values/can_author_use_shortcodes` filter allows you to override whether a post author is able to use the shortcode provided by the plugin. By default, the plugin's shortcode is only available for use by authors with the ability to post scripts (aka the 'unfiltered_html' capability), such as those with the editor or administrator role (except on Multisite) or the super administrator role. The limitation exists to prevent potential disclosure of potentially private information stored in post meta in posts authored by other users.
 
 #### Arguments
 
