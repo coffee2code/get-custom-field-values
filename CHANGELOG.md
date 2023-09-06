@@ -8,6 +8,8 @@
 * Change: Note compatibility through WP 6.3+
 * Change: Update copyright date (2023)
 * New: Add `.gitignore` file
+* Unit tests:
+    * Change: In bootstrap, add backcompat for PHPUnit pre-v6.0
 
 ## 4.0.1 _(2021-11-05)_
 * Change: Further restrict usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.

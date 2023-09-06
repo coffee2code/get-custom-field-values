@@ -10,23 +10,23 @@ define( 'GET_CUSTOM_FIELD_VALUES_PLUGIN_FILE', dirname( __FILE__, 3 ) . '/get-cu
 ini_set( 'display_errors', 'on' );
 error_reporting( E_ALL );
 
+// Backward compatibility (PHPUnit < 6).
+$phpunit_backcompat = array(
+	'\PHPUnit\Framework\TestCase' => 'PHPUnit_Framework_TestCase',
+);
+foreach ( $phpunit_backcompat as $new => $old ) {
+	if ( ! class_exists( $new ) && class_exists( $old ) ) {
+		class_alias( $old, $new );
+	}
+}
+
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
-
-// Check if installed in a src checkout.
-if ( ! $_tests_dir && false !== ( $pos = stripos( __FILE__, '/src/wp-content/plugins/' ) ) ) {
-	$_tests_dir = substr( __FILE__, 0, $pos ) . '/tests/phpunit/';
-}
-// Elseif no path yet, assume a temp directory path.
-elseif ( ! $_tests_dir ) {
-	$_tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib/tests/phpunit/';
+if ( ! $_tests_dir ) {
+	$_tests_dir = '/tmp/wordpress-tests-lib';
 }
 
-if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
-	echo "Could not find $_tests_dir/includes/functions.php\n";
-	exit( 1 );
-}
 // Give access to tests_add_filter() function.
-require_once $_tests_dir . '/includes/functions.php';
+require_once $_tests_dir . '/tests/phpunit/includes/functions.php';
 
 /**
  * Manually load the plugin being tested.
@@ -37,4 +37,4 @@ function _manually_load_plugin() {
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
 // Start up the WP testing environment.
-require $_tests_dir . '/includes/bootstrap.php';
+require $_tests_dir . '/tests/phpunit/includes/bootstrap.php';
