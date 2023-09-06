@@ -9,6 +9,9 @@
 * Change: Update copyright date (2023)
 * New: Add `.gitignore` file
 * Unit tests:
+    * Fix: Allow tests to run against current versions of WordPress
+    * New: Add `composer.json` for PHPUnit Polyfill dependency
+    * Change: Prevent PHP warnings due to missing core-related generated files
     * Change: In bootstrap, add backcompat for PHPUnit pre-v6.0
 
 ## 4.0.1 _(2021-11-05)_

@@ -5,7 +5,19 @@
  * @package Get_Custom_Field_Values
  */
 
-define( 'GET_CUSTOM_FIELD_VALUES_PLUGIN_FILE', dirname( __FILE__, 3 ) . '/get-custom-field-values.php' );
+define( 'GET_CUSTOM_FIELD_VALUES_PLUGIN_DIR',  dirname( __FILE__, 3 ) );
+define( 'GET_CUSTOM_FIELD_VALUES_PLUGIN_FILE', GET_CUSTOM_FIELD_VALUES_PLUGIN_DIR . '/get-custom-field-values.php' );
+
+$polyfill_path = GET_CUSTOM_FIELD_VALUES_PLUGIN_DIR . '/vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php';
+if ( file_exists( $polyfill_path ) ) {
+	require $polyfill_path;
+} else {
+	echo "Error: PHPUnit Polyfills dependency not found.\n";
+	echo "Run: composer require --dev yoast/phpunit-polyfills:\"^2.0\"\n";
+	exit;
+}
+
+! defined( 'WP_RUN_CORE_TESTS' ) && define( 'WP_RUN_CORE_TESTS', false );
 
 ini_set( 'display_errors', 'on' );
 error_reporting( E_ALL );
