@@ -142,12 +142,17 @@ class c2c_GetCustomFieldValuesShortcode {
 		$current_screen = get_current_screen();
 		$show = true;
 
-		// Show metabox if not the block editor.
+		// Ensure current screen is for a post.
+		if ( $show ) {
+			$show = 'post' === $current_screen->base;
+		}
+
+		// Ensure block editor is not enabled (metabox is not compatible in that context).
 		if ( $show ) {
 			$show = ! method_exists( $current_screen, 'is_block_editor' ) || ! $current_screen->is_block_editor();
 		}
 
-		// Don't show if author cannot publish post.
+		// Ensure post author can use shortcodes.
 		if ( $show ) {
 			/**
 			 * Filters if the shortcode builder metabox is shown.
