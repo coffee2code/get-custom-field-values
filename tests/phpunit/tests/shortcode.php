@@ -393,6 +393,14 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
 	}
 
+	public function test_show_metabox_when_not_on_post_page() {
+		set_current_screen( 'index' );
+		$current_screen = get_current_screen();
+		$current_screen->is_block_editor = false;
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
+
 	public function test_show_metabox_when_in_block_editor() {
 		set_current_screen( 'post.php' );
 		$current_screen = get_current_screen();
@@ -423,7 +431,10 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 	 * filter: get_custom_field_values/show_metabox
 	 */
 
-	public function test_filter_show_metabox() {
+	public function test_filter_show_metabox_fires_if_block_editor_disabled() {
+		set_current_screen( 'post.php' );
+		$current_screen = get_current_screen();
+		$current_screen->is_block_editor = false;
 		add_filter( 'get_custom_field_values/show_metabox', function( $show ) {
 			return true;
 		} );
@@ -434,7 +445,24 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 		$this->assertTrue( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
 	}
 
+	public function test_filter_show_metabox_does_not_fire_if_block_editor_enabled() {
+		set_current_screen( 'post.php' );
+		$current_screen = get_current_screen();
+		$current_screen->is_block_editor = true;
+		add_filter( 'get_custom_field_values/show_metabox', function( $show ) {
+			return true;
+		} );
+
+		$contributor_id = $this->create_user( false, array( 'role' => 'contributor' ) );
+		$post1_id       = $this->create_post_with_meta( array(), array( 'post_author' => $contributor_id ), true );
+
+		$this->assertFalse( c2c_GetCustomFieldValuesShortcode::$instance->show_metabox() );
+	}
+
 	public function test_filter_show_metabox_takes_into_account_user() {
+		set_current_screen( 'post.php' );
+		$current_screen = get_current_screen();
+		$current_screen->is_block_editor = false;
 		add_filter( 'get_custom_field_values/show_metabox', function( $show ) {
 			global $post;
 			$user = get_userdata( $post->post_author );
@@ -456,6 +484,9 @@ class Get_Custom_Field_Values_Shortcode_Test extends WP_UnitTestCase {
 	}
 
 	public function test_filter_show_metabox_gets_cast_to_bool() {
+		set_current_screen( 'post.php' );
+		$current_screen = get_current_screen();
+		$current_screen->is_block_editor = false;
 		add_filter( 'get_custom_field_values/show_metabox', function( $show ) {
 			return 5;
 		} );

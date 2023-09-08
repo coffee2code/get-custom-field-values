@@ -13,6 +13,7 @@
     * New: Add `composer.json` for PHPUnit Polyfill dependency
     * Change: Prevent PHP warnings due to missing core-related generated files
     * Change: In bootstrap, add backcompat for PHPUnit pre-v6.0
+    * Fix: Fix tests associated with `show_metabox()` and add two new tests
 
 ## 4.0.1 _(2021-11-05)_
 * Change: Further restrict usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
