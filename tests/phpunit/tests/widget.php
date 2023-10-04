@@ -129,7 +129,7 @@ class Get_Custom_Field_Values_Widget_Test extends WP_UnitTestCase {
 
 		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'post_id' => 'current' ) );
 
-		$this->assertNull( $widget->widget_body( $config, '', $settings ) );
+		$this->assertEmpty( $widget->widget_body( $config, '', $settings ) );
 	}
 
 	public function test_widget_with_post_id_of_current() {
@@ -166,6 +166,22 @@ class Get_Custom_Field_Values_Widget_Test extends WP_UnitTestCase {
 		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'mood', 'between' => ' and ' ) );
 
 		$this->assertEquals( 'befuddled and happy', $widget->widget_body( $config, '', $settings ) );
+	}
+
+	public function test_widget_with_html_in_meta() {
+		$post_id = $this->create_post_with_meta( array( 'concert' => '<sCript>alert(document.domain)</sCript>' ) );
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'concert', 'before' => '<strong>', 'after' => '</strong>', 'none' => 'None' ) );
+
+		$this->assertEquals( "<strong>alert(document.domain)</strong>", $widget->widget_body( $widget->validate( $config ), '', $settings ) );
+	}
+
+	public function test_widget_with_html_in_fields() {
+		$post_id = $this->create_post_with_meta( array( 'moodx' => '', [], true ) );
+		$script = 'hello<sCript>alert(document.domain)</sCript>';
+		$safe_script = '<strong>None found.</strong>';
+		list( $post_id, $widget, $config, $settings ) = $this->widget_init( array( 'field' => 'moodx', 'before' => $script, 'after' => $script, 'none' => $safe_script ) );
+
+		$this->assertEquals( "helloalert(document.domain)${safe_script}helloalert(document.domain)", $widget->widget_body( $widget->validate( $config ), '', $settings ) );
 	}
 
 }

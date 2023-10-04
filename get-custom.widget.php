@@ -203,7 +203,7 @@ class c2c_GetCustomWidget extends c2c_Widget_013 {
 			$body = $tag;
 		}
 
-		return $body;
+		return wp_kses_post( $body );
 	}
 
 	/**
@@ -219,6 +219,19 @@ class c2c_GetCustomWidget extends c2c_Widget_013 {
 		$instance['post_id'] = trim( $instance['post_id'] );
 		if ( '' != $instance['post_id'] ) {
 			$instance['post_id'] = intval( $instance['post_id'] );
+		}
+
+		// Sanitize text inputs to only allow safe HTML.
+		$text_inputs = array_keys(
+			array_filter(
+				$this->config,
+				function ( $value, $key ) { return ! empty( $value['input'] ) && 'text' === $value['input']; },
+				ARRAY_FILTER_USE_BOTH
+			)
+		);
+
+		foreach ( $text_inputs as $input ) {
+			$instance[ $input ] = wp_kses( trim( $instance[ $input ] ), 'post' );
 		}
 
 		return $instance;

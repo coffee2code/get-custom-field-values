@@ -1,6 +1,7 @@
 # ChangeLog
 
 ## _(in-progress)_
+* Hardening: Restrict markup used in widget to safe HTML. Props Satoo Nakano (Patchstack).
 * Change: Ensure `show_metabox()` only potentially returns true for post screens
 * Change: Add inline documentions for shortcode-related hooks
 * Change: Tweak some formatting in `DEVELOPER-DOCS.md`
