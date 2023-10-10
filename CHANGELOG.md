@@ -1,6 +1,13 @@
 # ChangeLog
 
-## _(in-progress)_
+## 4.1 _(2023-10-08)_
+
+### Highlights:
+
+This minor release prevents use of unsafe markup in widgets, improves documentation, improves unit testing, and notes compatibility through WP 6.3+.
+
+### Details:
+
 * Hardening: Restrict markup used in widget to safe HTML. Props Satoo Nakano (Patchstack).
 * Change: Ensure `show_metabox()` only potentially returns true for post screens
 * Change: Add inline documentions for shortcode-related hooks

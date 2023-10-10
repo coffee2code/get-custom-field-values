@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.6
 Tested up to: 6.3
-Stable tag: 4.0.1
+Stable tag: 4.1
 
 Use widgets, shortcodes, and/or template tags to easily retrieve and display custom field values for posts or pages.
 
@@ -127,6 +127,28 @@ The shortcode provided is `[custom-field]`, which has a number of attributes to 
 
 == Changelog ==
 
+= 4.1 (2023-10-08) =
+Highlights:
+
+This minor release prevents use of unsafe markup in widgets, improves documentation, improves unit testing, and notes compatibility through WP 6.3+.
+
+Details:
+
+* Hardening: Restrict markup used in widget to safe HTML. Props Satoo Nakano (Patchstack).
+* Change: Ensure `show_metabox()` only potentially returns true for post screens
+* Change: Add inline documentions for shortcode-related hooks
+* Change: Tweak some formatting in `DEVELOPER-DOCS.md`
+* Change: Clarify references to shortcode-related hook in `DEVELOPER-DOCS.md`
+* Change: Note compatibility through WP 6.3+
+* Change: Update copyright date (2023)
+* New: Add `.gitignore` file
+* Unit tests:
+    * Fix: Allow tests to run against current versions of WordPress
+    * New: Add `composer.json` for PHPUnit Polyfill dependency
+    * Change: Prevent PHP warnings due to missing core-related generated files
+    * Change: In bootstrap, add backcompat for PHPUnit pre-v6.0
+    * Fix: Fix tests associated with `show_metabox()` and add two new tests
+
 = 4.0.1 (2021-11-05) =
 * Change: Further restrict usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
 * New: Add a few more possible TODO items
@@ -168,31 +190,13 @@ Details:
         * Change: Remove 'test-' prefix from unit test files
 * New: Add a few more possible TODO items
 
-= 3.9.4 (2020-09-11) =
-* Change: Restructure unit test file structure
-    * New: Create new subdirectory `phpunit/` to house all files related to unit testing
-    * Change: Move `bin/` to `phpunit/bin/`
-    * Change: Move `tests/bootstrap.php` to `phpunit/`
-    * Change: Move `tests/` to `phpunit/tests/`
-    * Change: Rename `phpunit.xml` to `phpunit.xml.dist` per best practices
-* Change: Note compatibility through WP 5.5+
-
-= 3.9.3 (2020-05-23) =
-* New: Add TODO.md and move existing TODO list from top of main plugin file into it
-* Change: Update shortcode builder widget to 007:
-    * New: Store object instantiated during `register()`
-    * Change: Cast return value of `c2c_get_custom_field_values_post_types` filter as an array
-    * Change: Sanitize strings used in markup attributes (hardening)
-    * Change: Add a missing textdomain for string translation
-* Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests, and removed commented-out code
-* Change: Note compatibility through WP 5.4+
-* Change: Update links to coffee2code.com to be HTTPS
-* Change: Fix typo in FAQ
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/get-custom-field-values/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 4.1 =
+Minor update: Prevented use of unsafe markup in widgets, improved documentation, improved unit testing, and noted compatibility through WP 6.3+.
 
 = 4.0.1 =
 Security hardening release: Further restricted usage of shortcode to only those with 'unfiltered_html' capability. Props Erwan.
